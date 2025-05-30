@@ -92,7 +92,9 @@ public class Expendedor {
             switch (eleccion){
                 case COCACOLA -> {
                     auxiliar = depositoCocaCola.get();
+                    if (auxiliar == null) System.out.println("es null");
                     if(auxiliar != null){
+                        System.out.println("llego aca");
                         procesarMonedas(ProductosEnum.COCACOLA.getPrecio(), depositoMonedas, m);
                         depositoRetiro = auxiliar;
                     }
@@ -127,8 +129,9 @@ public class Expendedor {
                 }
             }
 
-
-            throw new NoHayProductoException();
+            if(depositoRetiro == null){
+                throw new NoHayProductoException();
+            }
         }
     }
 
@@ -180,13 +183,13 @@ public class Expendedor {
 
     /** Método que entrega los depositos del expendedor para poder "ver" sus productos en LabelDepositoProductos
      * */
-    public ArrayList<Deposito<Producto>> getDepositos(){
-        ArrayList<Deposito<Producto>> depositos = new ArrayList<>();
-        depositos.add(depositoCocaCola);
-        depositos.add(depositoSprite);
-        depositos.add(depositoFanta);
-        depositos.add(depositoSnickers);
-        depositos.add(depositoSuper8);
+    public ArrayList<ArrayList<Producto>> getDepositos(){
+        ArrayList<ArrayList<Producto>> depositos = new ArrayList<>();
+        depositos.add(depositoCocaCola.getArrayList());
+        depositos.add(depositoSprite.getArrayList());
+        depositos.add(depositoFanta.getArrayList());
+        depositos.add(depositoSnickers.getArrayList());
+        depositos.add(depositoSuper8.getArrayList());
         return depositos;
     }
 

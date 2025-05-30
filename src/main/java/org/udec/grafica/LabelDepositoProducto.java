@@ -1,5 +1,8 @@
 package org.udec.grafica;
 
+import org.udec.logica.Expendedor;
+import org.udec.logica.ProductosEnum;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
