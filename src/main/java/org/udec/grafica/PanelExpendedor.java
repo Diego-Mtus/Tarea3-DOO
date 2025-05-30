@@ -101,6 +101,10 @@ public class PanelExpendedor extends JPanel {
         actualizarStock(cantidadAñadir);
         // - - -
 
+        PanelSelectorProducto pselector = new PanelSelectorProducto();
+        pselector.setBounds(900,450,64,50);
+        this.add(pselector);
+
         this.setVisible(true);
     }
 
