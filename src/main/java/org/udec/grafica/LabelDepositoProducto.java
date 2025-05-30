@@ -15,7 +15,7 @@ public class LabelDepositoProducto extends JLabel {
 
     public LabelDepositoProducto (int x, int y) {
 
-        // cambiar después
+        // cambiar imagen después
         try {
             ImageIcon imagen = new ImageIcon(getClass().getResource("/deposito.png"));
             this.setIcon(imagen);
@@ -81,6 +81,12 @@ public class LabelDepositoProducto extends JLabel {
         if (!productos.isEmpty()) {
             this.productos.removeFirst();
             this.remove(0);
+
+            // Activar visibilidad de producto que está arriba
+            if((this.productos.size() >= MAX_PRODUCTOS) && !(this.productos.get(MAX_PRODUCTOS - 1).isVisible())){
+                this.productos.get(MAX_PRODUCTOS - 1).setVisible(true);
+            }
+
             for (LabelProducto p : productos) {
                 animacionProductos(p);
             }

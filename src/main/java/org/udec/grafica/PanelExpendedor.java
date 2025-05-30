@@ -35,11 +35,11 @@ public class PanelExpendedor extends JPanel {
         ldpSnickers = new LabelDepositoProducto(600, 200);
         ldpSuper8 = new LabelDepositoProducto(750, 200);
         for(int i = 0; i < cantidadProductos; i++) {
-            ldpCoca.addProducto(new LabelProducto(depositos.get(0).get(i), "productoejemplo.png"));
-            ldpSprite.addProducto(new LabelProducto(depositos.get(1).get(i), "productoejemplo2.png"));
-            ldpFanta.addProducto(new LabelProducto(depositos.get(2).get(i), "productoejemplo.png"));
-            ldpSnickers.addProducto(new LabelProducto(depositos.get(3).get(i), "productoejemplo2.png"));
-            ldpSuper8.addProducto(new LabelProducto(depositos.get(4).get(i), "productoejemplo.png"));
+            ldpCoca.addProducto(new LabelProducto(depositos.get(0).get(i), ProductosEnum.COCACOLA.getNombreImagen()));
+            ldpSprite.addProducto(new LabelProducto(depositos.get(1).get(i), ProductosEnum.SPRITE.getNombreImagen()));
+            ldpFanta.addProducto(new LabelProducto(depositos.get(2).get(i), ProductosEnum.FANTA.getNombreImagen()));
+            ldpSnickers.addProducto(new LabelProducto(depositos.get(3).get(i), ProductosEnum.SNICKERS.getNombreImagen()));
+            ldpSuper8.addProducto(new LabelProducto(depositos.get(4).get(i), ProductosEnum.SUPER8.getNombreImagen()));
         }
 
         this.add(ldpCoca);
@@ -67,7 +67,10 @@ public class PanelExpendedor extends JPanel {
         });
         this.add(boton);
 
-        actualizarStock(10);
+        // Prueba de funcionalidad:
+        int cantidadAñadir = 10;
+        System.out.println("Deberia ir desde " + (100+cantidadProductos) + " hasta " + (99+cantidadProductos + cantidadAñadir));
+        actualizarStock(cantidadAñadir);
         // - - -
         this.setVisible(true);
     }
@@ -82,15 +85,43 @@ public class PanelExpendedor extends JPanel {
 
         ArrayList<ArrayList<Producto>> depositosNuevo = expendedor.getDepositos();
 
+        // Revisa si elemento ya estaba en deposito antes
         for (ArrayList<Producto> subdeposito : depositosNuevo) {
-            for (Producto prod : subdeposito) {
-                if(depositos.get(0).contains(prod)){
-                    subdeposito.remove(prod);
+            for (int i = 0; i < subdeposito.size(); i++) {
+                if(depositos.get(depositosNuevo.indexOf(subdeposito)).contains(subdeposito.get(i))){
+                    subdeposito.remove(i);
+                    i--;
                 }
             }
         }
+
+        // Añade productos al labels de deposito de productos.
+
+        // COCACOLA
         for (Producto prod : depositosNuevo.get(0)) {
+            // Borrar comentario después.
             System.out.println(prod.getSerie());
+            ldpCoca.addProducto(new LabelProducto(prod, ProductosEnum.COCACOLA.getNombreImagen()));
+        }
+
+        // SPRITE
+        for (Producto prod : depositosNuevo.get(1)) {
+            ldpSprite.addProducto(new LabelProducto(prod, ProductosEnum.SPRITE.getNombreImagen()));
+        }
+
+        // FANTA
+        for (Producto prod : depositosNuevo.get(2)) {
+            ldpFanta.addProducto(new LabelProducto(prod, ProductosEnum.FANTA.getNombreImagen()));
+        }
+
+        // SNICKERS
+        for (Producto prod : depositosNuevo.get(3)) {
+            ldpSnickers.addProducto(new LabelProducto(prod, ProductosEnum.SNICKERS.getNombreImagen()));
+        }
+
+        // SUPER8
+        for (Producto prod : depositosNuevo.get(4)) {
+            ldpSuper8.addProducto(new LabelProducto(prod, ProductosEnum.SUPER8.getNombreImagen()));
         }
 
     }

@@ -92,9 +92,7 @@ public class Expendedor {
             switch (eleccion){
                 case COCACOLA -> {
                     auxiliar = depositoCocaCola.get();
-                    if (auxiliar == null) System.out.println("es null");
                     if(auxiliar != null){
-                        System.out.println("llego aca");
                         procesarMonedas(ProductosEnum.COCACOLA.getPrecio(), depositoMonedas, m);
                         depositoRetiro = auxiliar;
                     }

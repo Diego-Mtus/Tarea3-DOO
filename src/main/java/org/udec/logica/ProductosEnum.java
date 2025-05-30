@@ -17,29 +17,29 @@ public enum ProductosEnum {
 
     // Bebidas
     /** Representa el producto Coca-Cola con un índice 1, un precio de 500 y el nombre "Coca-Cola". */
-    COCACOLA(1, 800, "Coca-Cola"),
-    /** Representa el producto Sprite con un índice 2, un precio de 500 y el nombre "Sprite". */
-    SPRITE(2, 500, "Sprite"),
+    COCACOLA("productoejemplo.png", 800, "Coca-Cola"),
     /** Representa el producto Fanta con un índice 3, un precio de 400 y el nombre "Fanta". */
-    FANTA(3, 400, "Fanta"),
+    FANTA("productoejemplo2.png", 400, "Fanta"),
+    /** Representa el producto Sprite con un índice 2, un precio de 500 y el nombre "Sprite". */
+    SPRITE("productoejemplo.png", 500, "Sprite"),
 
     // Dulces
     /** Representa el producto Snickers con un índice 4, un precio de 500 y el nombre "Snickers". */
-    SNICKERS(4, 500, "Snickers"),
+    SNICKERS("productoejemplo2.png", 500, "Snickers"),
     /** Representa el producto Super8 con un índice 5, un precio de 300 y el nombre "Super8". */
-    SUPER8(5, 300, "Super8");
+    SUPER8("productoejemplo.png", 300, "Super8");
 
 
-    private final int indice;
+    private final String nombreImagen;
     private int precio;
     private final String nombre;
 
     /** Constructor que inicializa valores de la enumeración.
-     * @param indice El índice único para cada producto.
+     * @param nombreImagen El nombre de la imagen en resources.
      * @param precio El precio del producto.
      * @param nombre El nombre del producto.*/
-    ProductosEnum(int indice, int precio, String nombre){
-        this.indice = indice;
+    ProductosEnum(String nombreImagen, int precio, String nombre){
+        this.nombreImagen = nombreImagen;
         this.precio = precio;
         this.nombre = nombre;
     }
@@ -64,8 +64,8 @@ public enum ProductosEnum {
      * Obtiene el índice único del producto.
      * @return El índice único del producto.
      */
-    public int getIndice() {
-        return this.indice;
+    public String getNombreImagen() {
+        return this.nombreImagen;
     }
 
     /**
