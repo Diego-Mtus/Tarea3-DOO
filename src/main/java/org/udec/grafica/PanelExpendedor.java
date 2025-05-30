@@ -16,6 +16,8 @@ public class PanelExpendedor extends JPanel {
     private LabelDepositoProducto ldpSuper8;
     private ArrayList<ArrayList<Producto>> depositos;
 
+    private Producto ultimoComprado = null;
+
     public ImageIcon[] imagenesProductos;
 
     private int cantidadProductos = 13; // ESTA VARIABLE CONTROLA LA CANTIDAD INICIAL.
@@ -55,28 +57,50 @@ public class PanelExpendedor extends JPanel {
 
         // - Fin de sección de inicializar depositos de expendedores
 
-        // Eliminar este botón, es sólo de prueba de métodos.
+        // PRUEBAS: FIXME
+
+        // Eliminar estos botones, es sólo de prueba de métodos removeProducto()
         JButton boton = new JButton("Test removeProducto()");
-        boton.setBounds(400, 100, 200, 50);
+        boton.setBounds(300, 100, 180, 50);
         boton.addActionListener(e -> {
-            ldpCoca.removeProducto();
             System.out.println("Boton apretado");
             try {
-                expendedor.comprarProducto(new Moneda1000(), ProductosEnum.COCACOLA);
-                System.out.println("Se ha comprado un producto: " + expendedor.getProducto().usar());
+                if(ultimoComprado == null) {
+                    expendedor.comprarProducto(new Moneda1000(), ProductosEnum.COCACOLA);
+                    ldpCoca.removeProducto();
+
+                    ultimoComprado = expendedor.getProducto();
+                    System.out.println("Se ha comprado un producto: " + ultimoComprado.getSerie());
+                } else{
+                    System.out.println("Se debe retirar producto primero.");
+                }
             } catch (PagoIncorrectoException | NoHayProductoException | PagoInsuficienteException |
                      ProductoNoRetiradoException ex) {
                 throw new RuntimeException(ex);
             }
-            repaint();
+            repaint(ldpCoca.getX(), ldpCoca.getY(), ldpCoca.getWidth(), ldpCoca.getHeight());
         });
         this.add(boton);
 
-        // Prueba de funcionalidad:
+        JButton botonUsar = new JButton("Test usar producto");
+        botonUsar.setBounds(500,100,180,50);
+        botonUsar.addActionListener(e -> {
+            System.out.println("Boton apretado");
+            if(ultimoComprado != null){
+                System.out.println(ultimoComprado.usar());
+                ultimoComprado = null;
+            } else{
+                System.out.println("No tienes un producto a retirar.");
+            }
+        });
+        this.add(botonUsar);
+
+        // Prueba de funcionalidad de actualizarStock():
         int cantidadAñadir = 10;
         System.out.println("Deberia ir desde " + (100+cantidadProductos) + " hasta " + (99+cantidadProductos + cantidadAñadir));
         actualizarStock(cantidadAñadir);
         // - - -
+
         this.setVisible(true);
     }
 

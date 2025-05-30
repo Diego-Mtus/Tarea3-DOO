@@ -39,9 +39,9 @@ public class LabelDepositoProducto extends JLabel {
         int posX = (this.getWidth() - p.getWidth()) / 2;
 
 
-        int segundos = 5; // decisegundos creo ?? 0.1 segundo, lo dejaré como segundo para no confundir
+        int segundos = 1;
         int periodo = 100;
-        int totalIteraciones = (segundos * 100) / periodo;
+        int totalIteraciones = (segundos * 1000) / periodo;
         int posFinalY = p.getY() + pixY + 5;
 
         TimerTask accion = new TimerTask() {
