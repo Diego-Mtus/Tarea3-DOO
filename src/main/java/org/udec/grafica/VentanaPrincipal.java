@@ -9,7 +9,11 @@ public class VentanaPrincipal extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
+
+        this.setLayout(null);
+        this.add(new PanelPrincipal()); // Se agrega el PanelPrincipal
+
         this.setVisible(true);
-        this.add(new PanelPrincipal());
+
     }
 }

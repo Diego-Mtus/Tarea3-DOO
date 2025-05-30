@@ -1,5 +1,7 @@
 package org.udec.logica;
 
+import java.util.ArrayList;
+
 /**
  * Simulación de un expendedor con una cantidad finita de productos que se pueden comprar
 */
@@ -71,13 +73,20 @@ public class Expendedor {
      * @throws PagoIncorrectoException Se lanza si se intenta pagar con una moneda null.
      * @throws NoHayProductoException Se lanza si ya no quedan más de ese producto en su correspondiente depósito.
      * @throws PagoInsuficienteException Se lanza si la moneda usada no es suficiente para comprar producto.
+     * @throws ProductoNoRetiradoException Se lanza si se ha intentado comprar un producto sin haber retirado el comprado previamente.
      * */
-    public void comprarProducto(Moneda m, ProductosEnum eleccion) throws PagoIncorrectoException, NoHayProductoException, PagoInsuficienteException{
+    public void comprarProducto(Moneda m, ProductosEnum eleccion) throws PagoIncorrectoException, NoHayProductoException, PagoInsuficienteException, ProductoNoRetiradoException{
         if(m == null){
             throw new PagoIncorrectoException();
         }
+
+        if(depositoRetiro != null){
+            throw new ProductoNoRetiradoException();
+        }
+
         if(m.getValor() < eleccion.getPrecio()){
             throw new PagoInsuficienteException();
+
         } else {
             Producto auxiliar;
             switch (eleccion){
@@ -167,4 +176,18 @@ public class Expendedor {
         depositoRetiro = null;
         return aux;
     }
+
+
+    /** Método que entrega los depositos del expendedor para poder "ver" sus productos en LabelDepositoProductos
+     * */
+    public ArrayList<Deposito<Producto>> getDepositos(){
+        ArrayList<Deposito<Producto>> depositos = new ArrayList<>();
+        depositos.add(depositoCocaCola);
+        depositos.add(depositoSprite);
+        depositos.add(depositoFanta);
+        depositos.add(depositoSnickers);
+        depositos.add(depositoSuper8);
+        return depositos;
+    }
+
 }
