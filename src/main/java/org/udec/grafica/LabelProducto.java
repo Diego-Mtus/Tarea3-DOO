@@ -11,17 +11,12 @@ public class LabelProducto extends JLabel {
 
     private Producto producto;
 
-    public LabelProducto(Producto producto, String nombreImagen) {
-        this.producto = producto;
+    public LabelProducto(Producto producto, ImageIcon imagenProducto) {
 
-        try {
-            ImageIcon imagen = new ImageIcon(getClass().getResource("/" + nombreImagen));
-            this.setIcon(imagen);
-            this.setSize(imagen.getIconWidth(), imagen.getIconHeight());
-        } catch (Exception e) {
-            System.err.println("Error al cargar imagen desde la ruta: /" + nombreImagen + ". " + e.getMessage());
-            this.setText("Imagen no disponible");
-        }
+        this.producto = producto;
+        this.setIcon(imagenProducto);
+        this.setSize(imagenProducto.getIconWidth(), imagenProducto.getIconHeight());
+
 
         this.addMouseListener(new MouseAdapter() {
             @Override
