@@ -13,12 +13,13 @@ public class Comprador {
      * solamente se guardará el vuelto.</p>
      *
      * @param moneda La {@link Moneda} utilizada para la compra.
-     * @param cualProducto El índice del producto a comprar en la lista de productos disponibles. Vease índices de {@link ProductosEnum}
+     * @param cualProducto El producto a comprar en la lista de productos disponibles. Vease de {@link ProductosEnum}
      * @param exp El {@link Expendedor} desde el cual se realiza la compra.
      * */
-    public Comprador(Moneda moneda, int cualProducto, Expendedor exp){
+    public Comprador(Moneda moneda, ProductosEnum cualProducto, Expendedor exp){
         try {
-            Producto productoComprado = exp.comprarProducto(moneda, ProductosEnum.values()[cualProducto-1]);
+            exp.comprarProducto(moneda, cualProducto);
+            Producto productoComprado = exp.getProducto();
             accion = productoComprado.usar();
             vuelto = 0;
             Moneda aux = exp.getVuelto();
