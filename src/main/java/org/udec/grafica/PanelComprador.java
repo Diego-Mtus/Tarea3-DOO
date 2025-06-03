@@ -4,11 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PanelComprador extends JPanel {
+
+    PanelMoneda panelMoneda;
+
     public PanelComprador () {
-        this.setBackground(Color.YELLOW);
+        this.setBackground(PanelPrincipal.ROJO);
         this.setSize(400, 900);
         this.setBounds(1200, 0, 400, 900);
         this.setVisible(true);
+        this.panelMoneda = new PanelMoneda();
+        this.add(panelMoneda);
     }
 
     @Override

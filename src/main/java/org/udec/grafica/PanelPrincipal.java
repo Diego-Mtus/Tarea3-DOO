@@ -7,12 +7,17 @@ public class PanelPrincipal extends JPanel {
     private PanelComprador com;
     private PanelExpendedor exp;
 
+    // VARIABLES GLOBALES DE COLOR
+    public final static Color OSCURO = new Color(114, 83, 82);
+    public final static Color GRIS = new Color(197,203,211);
+    public final static Color CELESTE = new Color(140, 188, 185);
+    public final static Color AMARILLO = new Color(221, 164, 72);
+    public final static Color ROJO = new Color(187, 52, 47);
 
     public PanelPrincipal () {
 
         this.setSize(1600, 900);
         this.setLayout(null); // Usamos posiciones absolutas
-
 
         exp = new PanelExpendedor();
         com = new PanelComprador();

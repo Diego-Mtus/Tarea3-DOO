@@ -23,7 +23,7 @@ public class PanelExpendedor extends JPanel {
     private int cantidadProductos = 13; // ESTA VARIABLE CONTROLA LA CANTIDAD INICIAL.
 
     public PanelExpendedor() {
-        this.setBackground(Color.darkGray);
+        this.setBackground(PanelPrincipal.GRIS);
         this.setSize(1200, 900);
         this.setLayout(null);
 
