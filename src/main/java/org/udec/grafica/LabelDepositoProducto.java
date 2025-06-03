@@ -11,7 +11,7 @@ import java.util.Timer;
 
 public class LabelDepositoProducto extends JLabel {
     private List<LabelProducto> productos;
-    private final int MAX_PRODUCTOS = 14;
+    private final int MAX_PRODUCTOS = 15;
 
     public LabelDepositoProducto (int x, int y) {
 

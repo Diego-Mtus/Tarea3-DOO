@@ -61,9 +61,6 @@ public class PanelExpendedor extends JPanel {
 
         seleccion = ProductosEnum.COCACOLA;
 
-        // Eliminar estos botones, es sólo de prueba de métodos removeProducto()
-
-
 
         // Prueba de funcionalidad de actualizarStock():
         int cantidadAñadir = 10;

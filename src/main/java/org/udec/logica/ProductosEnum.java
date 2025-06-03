@@ -17,17 +17,17 @@ public enum ProductosEnum {
 
     // Bebidas
     /** Representa el producto Coca-Cola con un índice 1, un precio de 500 y el nombre "Coca-Cola". */
-    COCACOLA("productoejemplo.png", 800, "Coca-Cola"),
+    COCACOLA("cocacola.png", 800, "Coca-Cola"),
     /** Representa el producto Fanta con un índice 3, un precio de 400 y el nombre "Fanta". */
-    FANTA("productoejemplo2.png", 400, "Fanta"),
+    FANTA("fanta.png", 400, "Fanta"),
     /** Representa el producto Sprite con un índice 2, un precio de 500 y el nombre "Sprite". */
-    SPRITE("productoejemplo.png", 500, "Sprite"),
+    SPRITE("sprite.png", 500, "Sprite"),
 
     // Dulces
     /** Representa el producto Snickers con un índice 4, un precio de 500 y el nombre "Snickers". */
-    SNICKERS("productoejemplo2.png", 500, "Snickers"),
+    SNICKERS("snickers.png", 500, "Snickers"),
     /** Representa el producto Super8 con un índice 5, un precio de 300 y el nombre "Super8". */
-    SUPER8("productoejemplo.png", 300, "Super8");
+    SUPER8("super8.png", 300, "Super8");
 
 
     private final String nombreImagen;
