@@ -29,7 +29,7 @@ public class Comprador {
             }
         } catch (PagoIncorrectoException e) {
             System.out.println("Comprador no pudo obtener producto debido a " + e.getMessage());
-        } catch (NoHayProductoException | PagoInsuficienteException | ProductoNoRetiradoException e){
+        } catch (NoHayProductoException | PagoInsuficienteException e){
             vuelto = moneda.getValor();
             System.out.println("Comprador no pudo obtener producto debido a " + e.getMessage());
             System.out.println("Su moneda ha sido devuelta.");

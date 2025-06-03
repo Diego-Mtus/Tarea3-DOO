@@ -3,8 +3,6 @@ package org.udec.grafica;
 import org.udec.logica.*;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class PanelMoneda extends JPanel {
@@ -17,9 +15,9 @@ public class PanelMoneda extends JPanel {
     private Font fuentePersonalizada;
 
     // Inicializamos monedas
-    Moneda moneda100 = new Moneda100();
-    Moneda moneda500 = new Moneda500();
-    Moneda moneda1000 = new Moneda1000();
+    private Moneda moneda100 = new Moneda100();
+    private Moneda moneda500 = new Moneda500();
+    private Moneda moneda1000 = new Moneda1000();
 
     public PanelMoneda(){
 
@@ -27,14 +25,13 @@ public class PanelMoneda extends JPanel {
         this.setOpaque(false);
         this.setVisible(true);
 
-        fuentePersonalizada = new Font("Serif", Font.BOLD, 24);
 
         botonMoneda100 = new JButton();
         botonMoneda100.setPreferredSize(new Dimension(110, 120));
         botonMoneda100.setOpaque(true);
         botonMoneda100.setVisible(true);
         botonMoneda100.setFocusable(false);
-        botonMoneda100.setFont(fuentePersonalizada);
+        botonMoneda100.setFont(PanelPrincipal.fuentePersonalizadaBotones);
         botonMoneda100.setText("$100");
         this.add(botonMoneda100);
 
@@ -43,7 +40,7 @@ public class PanelMoneda extends JPanel {
         botonMoneda500.setOpaque(true);
         botonMoneda500.setVisible(true);
         botonMoneda500.setFocusable(false);
-        botonMoneda500.setFont(fuentePersonalizada);
+        botonMoneda500.setFont(PanelPrincipal.fuentePersonalizadaBotones);
         botonMoneda500.setText("$500");
         this.add(botonMoneda500);
 
@@ -52,7 +49,7 @@ public class PanelMoneda extends JPanel {
         botonMoneda1000.setOpaque(true);
         botonMoneda1000.setVisible(true);
         botonMoneda1000.setFocusable(false);
-        botonMoneda1000.setFont(fuentePersonalizada);
+        botonMoneda1000.setFont(PanelPrincipal.fuentePersonalizadaBotones);
         botonMoneda1000.setText("$1000");
         this.add(botonMoneda1000);
 
@@ -87,24 +84,44 @@ public class PanelMoneda extends JPanel {
             case 100:
                 botonMoneda100.setBackground(PanelPrincipal.AMARILLO);
                 botonMoneda100.setForeground(PanelPrincipal.OSCURO);
+
                 botonMoneda500.setBackground(PanelPrincipal.OSCURO);
+                botonMoneda500.setForeground(PanelPrincipal.AMARILLO);
+
                 botonMoneda1000.setBackground(PanelPrincipal.OSCURO);
+                botonMoneda1000.setForeground(PanelPrincipal.AMARILLO);
                 break;
             case 500:
                 botonMoneda100.setBackground(PanelPrincipal.OSCURO);
+                botonMoneda100.setForeground(PanelPrincipal.AMARILLO);
+
                 botonMoneda500.setBackground(PanelPrincipal.AMARILLO);
+                botonMoneda500.setForeground(PanelPrincipal.OSCURO);
+
                 botonMoneda1000.setBackground(PanelPrincipal.OSCURO);
+                botonMoneda1000.setForeground(PanelPrincipal.AMARILLO);
                 break;
             case 1000:
                 botonMoneda100.setBackground(PanelPrincipal.OSCURO);
+                botonMoneda100.setForeground(PanelPrincipal.AMARILLO);
+
                 botonMoneda500.setBackground(PanelPrincipal.OSCURO);
+                botonMoneda500.setForeground(PanelPrincipal.AMARILLO);
+
                 botonMoneda1000.setBackground(PanelPrincipal.AMARILLO);
+                botonMoneda1000.setForeground(PanelPrincipal.OSCURO);
+
                 break;
 
             default:
                 botonMoneda100.setBackground(PanelPrincipal.OSCURO);
+                botonMoneda100.setForeground(PanelPrincipal.AMARILLO);
+
                 botonMoneda500.setBackground(PanelPrincipal.OSCURO);
+                botonMoneda500.setForeground(PanelPrincipal.AMARILLO);
+
                 botonMoneda1000.setBackground(PanelPrincipal.OSCURO);
+                botonMoneda1000.setForeground(PanelPrincipal.AMARILLO);
                 break;
         }
     }

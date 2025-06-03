@@ -17,6 +17,7 @@ public class PanelExpendedor extends JPanel {
     private ArrayList<ArrayList<Producto>> depositos;
 
     private Producto ultimoComprado = null;
+    private ProductosEnum seleccion;
 
     public ImageIcon[] imagenesProductos;
 
@@ -59,28 +60,10 @@ public class PanelExpendedor extends JPanel {
 
         // PRUEBAS: FIXME
 
-        // Eliminar estos botones, es sólo de prueba de métodos removeProducto()
-        JButton boton = new JButton("Test removeProducto()");
-        boton.setBounds(300, 100, 180, 50);
-        boton.addActionListener(e -> {
-            System.out.println("Boton apretado");
-            try {
-                if(ultimoComprado == null) {
-                    expendedor.comprarProducto(new Moneda1000(), ProductosEnum.COCACOLA);
-                    ldpCoca.removeProducto();
+        seleccion = ProductosEnum.COCACOLA;
 
-                    ultimoComprado = expendedor.getProducto();
-                    System.out.println("Se ha comprado un producto: " + ultimoComprado.getSerie());
-                } else{
-                    System.out.println("Se debe retirar producto primero.");
-                }
-            } catch (PagoIncorrectoException | NoHayProductoException | PagoInsuficienteException |
-                     ProductoNoRetiradoException ex) {
-                throw new RuntimeException(ex);
-            }
-            repaint(ldpCoca.getX(), ldpCoca.getY(), ldpCoca.getWidth(), ldpCoca.getHeight());
-        });
-        this.add(boton);
+        // Eliminar estos botones, es sólo de prueba de métodos removeProducto()
+
 
         JButton botonUsar = new JButton("Test usar producto");
         botonUsar.setBounds(500,100,180,50);
@@ -102,7 +85,7 @@ public class PanelExpendedor extends JPanel {
         // - - -
 
         PanelSelectorProducto pselector = new PanelSelectorProducto();
-        pselector.setBounds(900,450,64,50);
+        pselector.setBounds(900,450,100,150);
         this.add(pselector);
 
         this.setVisible(true);
@@ -168,6 +151,47 @@ public class PanelExpendedor extends JPanel {
             ldpSuper8.addProducto(new LabelProducto(prod, imagenesProductos[4]));
         }
 
+    }
+
+    public Producto getUltimoComprado(){
+        return ultimoComprado;
+    }
+
+    public void setUltimoCompradoDesdeExpendedor(){
+        this.ultimoComprado = expendedor.getProducto();
+    }
+
+    public ProductosEnum getSeleccion(){
+        return seleccion;
+    }
+
+    public Expendedor getExpendedor(){
+        return expendedor;
+    }
+
+    public void removeProducto(){
+        switch (seleccion){
+            case COCACOLA:
+                ldpCoca.removeProducto();
+                repaint(ldpCoca.getX(), ldpCoca.getY(), ldpCoca.getWidth(), ldpCoca.getHeight());
+                break;
+            case FANTA:
+                ldpFanta.removeProducto();
+                repaint(ldpFanta.getX(), ldpFanta.getY(), ldpFanta.getWidth(), ldpFanta.getHeight());
+                break;
+            case SPRITE:
+                ldpSprite.removeProducto();
+                repaint(ldpSprite.getX(), ldpSprite.getY(), ldpSprite.getWidth(), ldpSprite.getHeight());
+                break;
+            case SNICKERS:
+                ldpSnickers.removeProducto();
+                repaint(ldpSnickers.getX(), ldpSnickers.getY(), ldpSnickers.getWidth(), ldpSnickers.getHeight());
+                break;
+            case SUPER8:
+                ldpSuper8.removeProducto();
+                repaint(ldpSuper8.getX(), ldpSuper8.getY(), ldpSuper8.getWidth(), ldpSuper8.getHeight());
+                break;
+        }
     }
 
 }

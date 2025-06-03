@@ -73,16 +73,13 @@ public class Expendedor {
      * @throws PagoIncorrectoException Se lanza si se intenta pagar con una moneda null.
      * @throws NoHayProductoException Se lanza si ya no quedan más de ese producto en su correspondiente depósito.
      * @throws PagoInsuficienteException Se lanza si la moneda usada no es suficiente para comprar producto.
-     * @throws ProductoNoRetiradoException Se lanza si se ha intentado comprar un producto sin haber retirado el comprado previamente.
+     *
      * */
-    public void comprarProducto(Moneda m, ProductosEnum eleccion) throws PagoIncorrectoException, NoHayProductoException, PagoInsuficienteException, ProductoNoRetiradoException{
+    public void comprarProducto(Moneda m, ProductosEnum eleccion) throws PagoIncorrectoException, NoHayProductoException, PagoInsuficienteException{
         if(m == null){
             throw new PagoIncorrectoException();
         }
 
-        if(depositoRetiro != null){
-            throw new ProductoNoRetiradoException();
-        }
 
         if(m.getValor() < eleccion.getPrecio()){
             throw new PagoInsuficienteException();
