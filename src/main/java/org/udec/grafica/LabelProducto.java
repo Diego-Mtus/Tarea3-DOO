@@ -17,6 +17,7 @@ public class LabelProducto extends JLabel {
         this.setIcon(imagenProducto);
         this.setSize(imagenProducto.getIconWidth(), imagenProducto.getIconHeight());
 
+        this.setToolTipText("Serie: " + producto.getSerie());
 
         this.addMouseListener(new MouseAdapter() {
             @Override

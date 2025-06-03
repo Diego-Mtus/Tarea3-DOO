@@ -68,6 +68,7 @@ public class PanelExpendedor extends JPanel {
         actualizarStock(cantidadAñadir);
         // - - -
 
+
         PanelSelectorProducto pselector = new PanelSelectorProducto();
         pselector.setBounds(900,450,100,150);
         this.add(pselector);
@@ -90,6 +91,8 @@ public class PanelExpendedor extends JPanel {
             System.err.println("Error al cargar imagenes de productos");
         }
     }
+
+
 
     private void actualizarStock(int cantidadAdd) {
         expendedor.recargarStock(cantidadAdd);
@@ -137,6 +140,10 @@ public class PanelExpendedor extends JPanel {
 
     }
 
+    // Para ser usado en PanelSelectorProducto
+    public void setSeleccion(ProductosEnum seleccion) {
+        this.seleccion = seleccion;
+    }
 
     public ProductosEnum getSeleccion(){
         return seleccion;
