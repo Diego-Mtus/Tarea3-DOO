@@ -10,6 +10,8 @@ public class PanelComprador extends JPanel {
     PanelMoneda panelMoneda;
     PanelExpendedor panelExpendedor;
 
+    private Producto ultimoComprado = null;
+
     public PanelComprador (PanelExpendedor panelExpendedor) {
         this.setBackground(PanelPrincipal.ROJO);
         this.setSize(400, 900);
@@ -29,11 +31,11 @@ public class PanelComprador extends JPanel {
         botonComprar.addActionListener(e -> {
             System.out.println("Boton apretado");
             try {
-                if(panelExpendedor.getUltimoComprado() == null) {
+                if(ultimoComprado == null) {
                     panelExpendedor.getExpendedor().comprarProducto(panelMoneda.getMonedaSeleccionada(), panelExpendedor.getSeleccion());
                     panelExpendedor.removeProducto();
-                    panelExpendedor.setUltimoCompradoDesdeExpendedor();
-                    System.out.println("Se ha comprado un producto: " + panelExpendedor.getUltimoComprado().getSerie());
+                    ultimoComprado = panelExpendedor.getExpendedor().getProducto();
+                    System.out.println("Se ha comprado un producto: " + ultimoComprado.getSerie());
                 } else{
                     JOptionPane.showMessageDialog(null, "Recuerda retirar tu última compra", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 }
@@ -48,6 +50,19 @@ public class PanelComprador extends JPanel {
         });
         this.add(botonComprar);
 
+
+        JButton botonUsar = new JButton("Test usar producto");
+        botonUsar.setBounds(500,100,180,50);
+        botonUsar.addActionListener(e -> {
+            System.out.println("Boton apretado");
+            if(ultimoComprado != null){
+                System.out.println(ultimoComprado.usar());
+                ultimoComprado = null;
+            } else{
+                System.out.println("No tienes un producto a retirar.");
+            }
+        });
+        this.add(botonUsar);
     }
 
     @Override

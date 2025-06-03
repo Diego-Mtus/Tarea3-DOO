@@ -16,7 +16,6 @@ public class PanelExpendedor extends JPanel {
     private LabelDepositoProducto ldpSuper8;
     private ArrayList<ArrayList<Producto>> depositos;
 
-    private Producto ultimoComprado = null;
     private ProductosEnum seleccion;
 
     public ImageIcon[] imagenesProductos;
@@ -65,18 +64,6 @@ public class PanelExpendedor extends JPanel {
         // Eliminar estos botones, es sólo de prueba de métodos removeProducto()
 
 
-        JButton botonUsar = new JButton("Test usar producto");
-        botonUsar.setBounds(500,100,180,50);
-        botonUsar.addActionListener(e -> {
-            System.out.println("Boton apretado");
-            if(ultimoComprado != null){
-                System.out.println(ultimoComprado.usar());
-                ultimoComprado = null;
-            } else{
-                System.out.println("No tienes un producto a retirar.");
-            }
-        });
-        this.add(botonUsar);
 
         // Prueba de funcionalidad de actualizarStock():
         int cantidadAñadir = 10;
@@ -153,13 +140,6 @@ public class PanelExpendedor extends JPanel {
 
     }
 
-    public Producto getUltimoComprado(){
-        return ultimoComprado;
-    }
-
-    public void setUltimoCompradoDesdeExpendedor(){
-        this.ultimoComprado = expendedor.getProducto();
-    }
 
     public ProductosEnum getSeleccion(){
         return seleccion;
