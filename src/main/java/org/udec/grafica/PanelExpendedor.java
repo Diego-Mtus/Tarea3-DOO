@@ -24,7 +24,7 @@ public class PanelExpendedor extends JPanel {
 
     public PanelExpendedor() {
         this.setBackground(PanelPrincipal.GRIS);
-        this.setSize(1200, 900);
+        this.setSize(1000, 800);
         this.setLayout(null);
 
         precargarImagenesProductos();
@@ -35,12 +35,12 @@ public class PanelExpendedor extends JPanel {
 
         // Sección de inicializar depositos de expendedores
 
-        // Distancia de separacion en x entre cada ldp de momento 150
-        ldpCoca = new LabelDepositoProducto(150, 200);
-        ldpSprite = new LabelDepositoProducto(300, 200);
-        ldpFanta = new LabelDepositoProducto(450, 200);
-        ldpSnickers = new LabelDepositoProducto(600, 200);
-        ldpSuper8 = new LabelDepositoProducto(750, 200);
+        // Distancia de separacion en x entre cada ldp de momento 120
+        ldpCoca = new LabelDepositoProducto(120, 140);
+        ldpSprite = new LabelDepositoProducto(240, 140);
+        ldpFanta = new LabelDepositoProducto(360, 140);
+        ldpSnickers = new LabelDepositoProducto(480, 140);
+        ldpSuper8 = new LabelDepositoProducto(600, 140);
         for(int i = 0; i < cantidadProductos; i++) {
             ldpCoca.addProducto(new LabelProducto(depositos.get(0).get(i), imagenesProductos[0]));
             ldpSprite.addProducto(new LabelProducto(depositos.get(1).get(i), imagenesProductos[1]));
@@ -70,7 +70,7 @@ public class PanelExpendedor extends JPanel {
 
 
         PanelSelectorProducto pselector = new PanelSelectorProducto();
-        pselector.setBounds(900,450,100,150);
+        pselector.setBounds(900,450,pselector.getWidth(),pselector.getHeight());
         this.add(pselector);
 
         this.setVisible(true);

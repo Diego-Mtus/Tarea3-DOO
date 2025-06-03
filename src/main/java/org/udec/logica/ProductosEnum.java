@@ -17,7 +17,7 @@ public enum ProductosEnum {
 
     // Bebidas
     /** Representa el producto Coca-Cola con un índice 1, un precio de 500 y el nombre "Coca-Cola". */
-    COCACOLA("cocacola.png", 800, "Coca-Cola"),
+    COCACOLA("cocacola.png", 100, "Coca-Cola"),
     /** Representa el producto Fanta con un índice 3, un precio de 400 y el nombre "Fanta". */
     FANTA("fanta.png", 400, "Fanta"),
     /** Representa el producto Sprite con un índice 2, un precio de 500 y el nombre "Sprite". */

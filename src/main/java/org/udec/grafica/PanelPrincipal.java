@@ -17,7 +17,7 @@ public class PanelPrincipal extends JPanel {
 
     public PanelPrincipal () {
 
-        this.setSize(1600, 900);
+        this.setSize(1400, 800);
         this.setLayout(null); // Usamos posiciones absolutas
 
         exp = new PanelExpendedor();
