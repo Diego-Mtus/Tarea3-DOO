@@ -27,7 +27,7 @@ public class Comprador {
                 vuelto += aux.getValor();
                 aux = exp.getVuelto();
             }
-        } catch (PagoIncorrectoException e) {
+        } catch (PagoIncorrectoException | NoSeleccionException e) {
             System.out.println("Comprador no pudo obtener producto debido a " + e.getMessage());
         } catch (NoHayProductoException | PagoInsuficienteException e){
             vuelto = moneda.getValor();

@@ -80,6 +80,8 @@ public class PanelComprador extends JPanel {
                 JOptionPane.showMessageDialog(null, "El producto seleccionado no está disponible", "Advertencia", JOptionPane.WARNING_MESSAGE);
             } catch (PagoInsuficienteException ex) {
                 JOptionPane.showMessageDialog(null, "No tienes suficiente dinero", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } catch (NoSeleccionException ex) {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar un producto primero", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
 
         });

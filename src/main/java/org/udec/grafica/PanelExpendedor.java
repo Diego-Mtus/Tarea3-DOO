@@ -59,7 +59,6 @@ public class PanelExpendedor extends JPanel {
 
         // PRUEBAS: FIXME
 
-        seleccion = ProductosEnum.COCACOLA;
 
 
         // Prueba de funcionalidad de actualizarStock():
@@ -69,8 +68,8 @@ public class PanelExpendedor extends JPanel {
         // - - -
 
 
-        PanelSelectorProducto pselector = new PanelSelectorProducto();
-        pselector.setBounds(900,450,pselector.getWidth(),pselector.getHeight());
+        PanelSelectorProducto pselector = new PanelSelectorProducto(this);
+        pselector.setBounds(740, 300, 80,200);
         this.add(pselector);
 
         this.setVisible(true);

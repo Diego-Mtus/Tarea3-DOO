@@ -12,7 +12,6 @@ public class PanelMoneda extends JPanel {
     private JButton botonMoneda1000;
     private Moneda monedaSeleccionada;
     private int monedaTipo;
-    private Font fuentePersonalizada;
 
     // Inicializamos monedas
     private Moneda moneda100 = new Moneda100();
