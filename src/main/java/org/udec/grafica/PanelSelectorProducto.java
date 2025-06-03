@@ -56,6 +56,7 @@ public class PanelSelectorProducto extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 panelExpendedor.setSeleccion(ProductosEnum.COCACOLA);
+                panelExpendedor.actualizarValores(ProductosEnum.COCACOLA, panelExpendedor.getStockIndividual(0));
             }
         });
         this.add(botonCocacola);
@@ -76,6 +77,7 @@ public class PanelSelectorProducto extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 panelExpendedor.setSeleccion(ProductosEnum.SPRITE);
+                panelExpendedor.actualizarValores(ProductosEnum.SPRITE, panelExpendedor.getStockIndividual(1));
             }
         });
         this.add(botonSprite);
@@ -96,6 +98,7 @@ public class PanelSelectorProducto extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 panelExpendedor.setSeleccion(ProductosEnum.FANTA);
+                panelExpendedor.actualizarValores(ProductosEnum.FANTA, panelExpendedor.getStockIndividual(2));
             }
         });
         this.add(botonFanta);
@@ -116,6 +119,7 @@ public class PanelSelectorProducto extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 panelExpendedor.setSeleccion(ProductosEnum.SNICKERS);
+                panelExpendedor.actualizarValores(ProductosEnum.SNICKERS, panelExpendedor.getStockIndividual(3));
             }
         });
         this.add(botonSnickers);
@@ -136,6 +140,7 @@ public class PanelSelectorProducto extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 panelExpendedor.setSeleccion(ProductosEnum.SUPER8);
+                panelExpendedor.actualizarValores(ProductosEnum.SUPER8, panelExpendedor.getStockIndividual(4));
             }
         });
         this.add(botonSuper8);

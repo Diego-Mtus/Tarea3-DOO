@@ -51,7 +51,7 @@ public class PanelComprador extends JPanel {
         this.add(panelMoneda);
 
         botonComprar = new JButton("Comprar producto");
-        botonComprar.setPreferredSize(new Dimension(340, 100));
+        botonComprar.setPreferredSize(new Dimension(340, 80));
         botonComprar.setFocusable(false);
         botonComprar.setBackground(PanelPrincipal.OSCURO);
         botonComprar.setForeground(PanelPrincipal.AMARILLO);
@@ -69,6 +69,7 @@ public class PanelComprador extends JPanel {
                         vueltoMonedas.add(aux);
                         aux = panelExpendedor.getExpendedor().getVuelto();
                     }
+                    panelExpendedor.actualizarValores(panelExpendedor.getSeleccion(), panelExpendedor.getStockIndividual(panelExpendedor.getSeleccion().ordinal()));
                     botonConseguirProducto.setVisible(true);
                     System.out.println("Se ha comprado un producto: " + ultimoComprado.getSerie() + ", vuelto total: $" + vueltoDinero);
                 } else{
@@ -89,7 +90,7 @@ public class PanelComprador extends JPanel {
 
         // Boton de ver vuelto
         botonSaldo = new JButton("Ver vuelto total");
-        botonSaldo.setPreferredSize(new Dimension(340, 100));
+        botonSaldo.setPreferredSize(new Dimension(340, 80));
         botonSaldo.setFocusable(false);
         botonSaldo.setFont(PanelPrincipal.fuentePersonalizadaBotones);
         botonSaldo.setForeground(PanelPrincipal.AMARILLO);
@@ -102,6 +103,19 @@ public class PanelComprador extends JPanel {
             } else{
                 JOptionPane.showMessageDialog(null, "No has recibido vuelto todavía", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
+        });
+
+        JButton botonReinicio = new JButton("Limpiar vuelto");
+        botonReinicio.setPreferredSize(new Dimension(340, 40));
+        botonReinicio.setFont(PanelPrincipal.fuentePersonalizadaBotones);
+        botonReinicio.setForeground(PanelPrincipal.AMARILLO);
+        botonReinicio.setBackground(PanelPrincipal.OSCURO);
+        botonReinicio.setFocusable(false);
+        this.add(botonReinicio);
+        botonReinicio.addActionListener(e -> {
+            System.out.println("Boton apretado: Boton limpiar vuelto");
+            vueltoDinero = 0;
+            vueltoMonedas.clear();
         });
 
         // Botón de conseguir producto
@@ -176,7 +190,11 @@ public class PanelComprador extends JPanel {
             ventana.add(moneda);
         }
 
-        ventana.add(new JLabel("Total: " + vueltoDinero + " pesos."));
+
+        JLabel texto = new JLabel("Total: " + vueltoDinero + " pesos.");
+        texto.setFont(PanelPrincipal.fuentePersonalizadaBotones);
+        ventana.add(texto, BorderLayout.SOUTH);
+
 
     }
 

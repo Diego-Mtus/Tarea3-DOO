@@ -15,6 +15,8 @@ public class PanelExpendedor extends JPanel {
     private LabelDepositoProducto ldpSnickers;
     private LabelDepositoProducto ldpSuper8;
     private ArrayList<ArrayList<Producto>> depositos;
+    private int[] stockIndividual;
+    private LabelInformacion labelInformativo;
 
     private ProductosEnum seleccion;
 
@@ -28,8 +30,11 @@ public class PanelExpendedor extends JPanel {
         this.setLayout(null);
 
         precargarImagenesProductos();
-
         expendedor = new Expendedor(cantidadProductos);
+        stockIndividual = new int[5];
+        for(int i = 0; i < 5; i++){
+            stockIndividual[i] = cantidadProductos;
+        }
 
         depositos = expendedor.getDepositos();
 
@@ -57,6 +62,9 @@ public class PanelExpendedor extends JPanel {
 
         // - Fin de sección de inicializar depositos de expendedores
 
+        labelInformativo = new LabelInformacion(160, 64);
+        this.add(labelInformativo);
+
         // PRUEBAS: FIXME
 
 
@@ -80,6 +88,11 @@ public class PanelExpendedor extends JPanel {
         super.paintComponent(g);
     }
 
+    public void actualizarValores(ProductosEnum producto, int stock){
+        labelInformativo.actualizarValores(producto, stock);
+    }
+
+
     private void precargarImagenesProductos(){
         try {
             imagenesProductos = new ImageIcon[ProductosEnum.values().length];
@@ -95,6 +108,9 @@ public class PanelExpendedor extends JPanel {
 
     private void actualizarStock(int cantidadAdd) {
         expendedor.recargarStock(cantidadAdd);
+        for(int i = 0; i < 5; i++){
+            stockIndividual[i] += cantidadAdd;
+        }
 
         ArrayList<ArrayList<Producto>> depositosNuevo = expendedor.getDepositos();
 
@@ -148,6 +164,11 @@ public class PanelExpendedor extends JPanel {
         return seleccion;
     }
 
+    public int getStockIndividual(int i){
+        return stockIndividual[i];
+    }
+
+
     public Expendedor getExpendedor(){
         return expendedor;
     }
@@ -155,22 +176,27 @@ public class PanelExpendedor extends JPanel {
     public void removeProducto(){
         switch (seleccion){
             case COCACOLA:
+                stockIndividual[0]--;
                 ldpCoca.removeProducto();
                 repaint(ldpCoca.getX(), ldpCoca.getY(), ldpCoca.getWidth(), ldpCoca.getHeight());
                 break;
             case FANTA:
+                stockIndividual[2]--;
                 ldpFanta.removeProducto();
                 repaint(ldpFanta.getX(), ldpFanta.getY(), ldpFanta.getWidth(), ldpFanta.getHeight());
                 break;
             case SPRITE:
+                stockIndividual[1]--;
                 ldpSprite.removeProducto();
                 repaint(ldpSprite.getX(), ldpSprite.getY(), ldpSprite.getWidth(), ldpSprite.getHeight());
                 break;
             case SNICKERS:
+                stockIndividual[3]--;
                 ldpSnickers.removeProducto();
                 repaint(ldpSnickers.getX(), ldpSnickers.getY(), ldpSnickers.getWidth(), ldpSnickers.getHeight());
                 break;
             case SUPER8:
+                stockIndividual[4]--;
                 ldpSuper8.removeProducto();
                 repaint(ldpSuper8.getX(), ldpSuper8.getY(), ldpSuper8.getWidth(), ldpSuper8.getHeight());
                 break;
