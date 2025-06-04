@@ -64,4 +64,8 @@ public class LabelInformacion extends JLabel {
         this.setText(textoInformativo);
     }
 
+    public void mostrarRenovacion(){
+        this.setText("¡Se han repuesto 10 unidades de stock!");
+    }
+
 }

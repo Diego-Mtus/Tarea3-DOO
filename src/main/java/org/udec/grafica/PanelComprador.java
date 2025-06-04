@@ -50,6 +50,8 @@ public class PanelComprador extends JPanel {
         this.panelMoneda = new PanelMoneda();
         this.add(panelMoneda);
 
+
+        // Boton de comprar
         botonComprar = new JButton("Comprar producto");
         botonComprar.setPreferredSize(new Dimension(340, 80));
         botonComprar.setFocusable(false);

@@ -22,7 +22,7 @@ public class PanelExpendedor extends JPanel {
 
     public ImageIcon[] imagenesProductos;
 
-    private int cantidadProductos = 13; // ESTA VARIABLE CONTROLA LA CANTIDAD INICIAL.
+    private int cantidadProductos = 15; // ESTA VARIABLE CONTROLA LA CANTIDAD INICIAL.
 
     public PanelExpendedor() {
         this.setBackground(PanelPrincipal.GRIS);
@@ -65,19 +65,10 @@ public class PanelExpendedor extends JPanel {
         labelInformativo = new LabelInformacion(160, 64);
         this.add(labelInformativo);
 
-        // PRUEBAS: FIXME
-
-
-
-        // Prueba de funcionalidad de actualizarStock():
-        int cantidadAñadir = 10;
-        System.out.println("Deberia ir desde " + (100+cantidadProductos) + " hasta " + (99+cantidadProductos + cantidadAñadir));
-        actualizarStock(cantidadAñadir);
-        // - - -
 
 
         PanelSelectorProducto pselector = new PanelSelectorProducto(this);
-        pselector.setBounds(740, 300, 80,200);
+        pselector.setBounds(740, 300, 120,300);
         this.add(pselector);
 
         this.setVisible(true);
@@ -92,6 +83,14 @@ public class PanelExpendedor extends JPanel {
         labelInformativo.actualizarValores(producto, stock);
     }
 
+    public void mostrarRenovacion(){
+        labelInformativo.mostrarRenovacion();
+        repaint(ldpCoca.getX(), ldpCoca.getY(), ldpCoca.getWidth(), ldpCoca.getHeight());
+        repaint(ldpSprite.getX(), ldpSprite.getY(), ldpSprite.getWidth(), ldpSprite.getHeight());
+        repaint(ldpFanta.getX(), ldpFanta.getY(), ldpFanta.getWidth(), ldpFanta.getHeight());
+        repaint(ldpSnickers.getX(), ldpSnickers.getY(), ldpSnickers.getWidth(), ldpSnickers.getHeight());
+        repaint(ldpSuper8.getX(), ldpSuper8.getY(), ldpSuper8.getWidth(), ldpSuper8.getHeight());
+    }
 
     private void precargarImagenesProductos(){
         try {
@@ -106,7 +105,7 @@ public class PanelExpendedor extends JPanel {
 
 
 
-    private void actualizarStock(int cantidadAdd) {
+    public void actualizarStock(int cantidadAdd) {
         expendedor.recargarStock(cantidadAdd);
         for(int i = 0; i < 5; i++){
             stockIndividual[i] += cantidadAdd;

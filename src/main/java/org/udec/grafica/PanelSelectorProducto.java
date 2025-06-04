@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
 public class PanelSelectorProducto extends JPanel {
 
     private ImageIcon[][] imagenesLogoProducto;
-    private JLabel botonCocacola, botonSprite, botonFanta, botonSnickers, botonSuper8;
+    private JLabel botonCocacola, botonSprite, botonFanta, botonSnickers, botonSuper8, botonRestock;
     private PanelExpendedor panelExpendedor;
 
     public PanelSelectorProducto(PanelExpendedor panelExpendedor){
@@ -22,18 +22,20 @@ public class PanelSelectorProducto extends JPanel {
 
         // Precargar logos
         try {
-            this.imagenesLogoProducto = new ImageIcon[5][2];
+            this.imagenesLogoProducto = new ImageIcon[6][2];
             imagenesLogoProducto[0][0] = new ImageIcon(getClass().getResource("/cocacolalogo1.png"));
             imagenesLogoProducto[1][0] = new ImageIcon(getClass().getResource("/spritelogo1.png"));
             imagenesLogoProducto[2][0] = new ImageIcon(getClass().getResource("/fantalogo1.png"));
             imagenesLogoProducto[3][0] = new ImageIcon(getClass().getResource("/snickerslogo1.png"));
             imagenesLogoProducto[4][0] = new ImageIcon(getClass().getResource("/super8logo1.png"));
+            imagenesLogoProducto[5][0] = new ImageIcon(getClass().getResource("/restocklogo1.png"));
 
             imagenesLogoProducto[0][1] = new ImageIcon(getClass().getResource("/cocacolalogo2.png"));
             imagenesLogoProducto[1][1] = new ImageIcon(getClass().getResource("/spritelogo2.png"));
             imagenesLogoProducto[2][1] = new ImageIcon(getClass().getResource("/fantalogo2.png"));
             imagenesLogoProducto[3][1] = new ImageIcon(getClass().getResource("/snickerslogo2.png"));
             imagenesLogoProducto[4][1] = new ImageIcon(getClass().getResource("/super8logo2.png"));
+            imagenesLogoProducto[5][1] = new ImageIcon(getClass().getResource("/restocklogo2.png"));
 
         } catch (Exception e) {
             System.err.println("Error al cargar imagenes de panel selector de productos");
@@ -144,6 +146,26 @@ public class PanelSelectorProducto extends JPanel {
             }
         });
         this.add(botonSuper8);
+        this.add(Box.createRigidArea(new Dimension(0,8)));
+        botonRestock = new JLabel(imagenesLogoProducto[5][0]);
+        botonRestock.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                botonRestock.setIcon(imagenesLogoProducto[5][1]);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                botonRestock.setIcon(imagenesLogoProducto[5][0]);
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                panelExpendedor.actualizarStock(10);
+                panelExpendedor.mostrarRenovacion();
+            }
+        });
+        this.add(botonRestock);
         this.add(Box.createRigidArea(new Dimension(0,4)));
 
         this.setVisible(true);
