@@ -163,6 +163,7 @@ public class PanelComprador extends JPanel {
     }
 
     private void crearVentanaVuelto(){
+        if(vueltoMonedas.size() < 30){
         JDialog ventana = new JDialog((JFrame) SwingUtilities.getWindowAncestor(PanelComprador.this), "Vuelto", true);
         ventana.setLayout(new FlowLayout(FlowLayout.CENTER));
         ventana.setMaximumSize(new Dimension(1400, 600));
@@ -172,29 +173,32 @@ public class PanelComprador extends JPanel {
         ventana.pack();
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Tienes muchas monedas como para desplegarlas. \nTotal: " + vueltoDinero + " pesos.", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     private void recibirVuelto(JDialog ventana){
-        for(Moneda mon : vueltoMonedas){
-            JLabel moneda;
-            if(mon instanceof Moneda100){
-                moneda = new JLabel(imagenMoneda[0]);
-            } else if(mon instanceof Moneda500){
-                moneda = new JLabel(imagenMoneda[1]);
-            } else{
-                moneda = new JLabel(imagenMoneda[2]);
+
+            for (Moneda mon : vueltoMonedas) {
+                JLabel moneda;
+                if (mon instanceof Moneda100) {
+                    moneda = new JLabel(imagenMoneda[0]);
+                } else if (mon instanceof Moneda500) {
+                    moneda = new JLabel(imagenMoneda[1]);
+                } else {
+                    moneda = new JLabel(imagenMoneda[2]);
+                }
+                moneda.setText("Serie: " + mon.getSerie());
+                moneda.setVerticalTextPosition(SwingConstants.BOTTOM);
+                moneda.setHorizontalTextPosition(SwingConstants.CENTER);
+                ventana.add(moneda);
             }
-            moneda.setText("Serie: " +mon.getSerie());
-            moneda.setVerticalTextPosition(SwingConstants.BOTTOM);
-            moneda.setHorizontalTextPosition(SwingConstants.CENTER);
-            ventana.add(moneda);
-        }
 
 
-        JLabel texto = new JLabel("Total: " + vueltoDinero + " pesos.");
-        texto.setFont(PanelPrincipal.fuentePersonalizadaBotones);
-        ventana.add(texto, BorderLayout.SOUTH);
-
+            JLabel texto = new JLabel("Total: " + vueltoDinero + " pesos.");
+            texto.setFont(PanelPrincipal.fuentePersonalizadaBotones);
+            ventana.add(texto, BorderLayout.SOUTH);
 
     }
 
