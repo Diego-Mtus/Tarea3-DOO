@@ -60,9 +60,10 @@ public class PanelComprador extends JPanel {
         botonComprar.setFont(PanelPrincipal.fuentePersonalizadaBotones);
         botonComprar.addActionListener(e -> {
             System.out.println("Boton apretado");
+            Moneda ultimaMoneda = panelMoneda.getMonedaSeleccionada();
             try {
                 if(ultimoComprado == null) {
-                    panelExpendedor.getExpendedor().comprarProducto(panelMoneda.getMonedaSeleccionada(), panelExpendedor.getSeleccion());
+                    panelExpendedor.getExpendedor().comprarProducto(ultimaMoneda, panelExpendedor.getSeleccion());
                     panelExpendedor.removeProducto();
                     ultimoComprado = panelExpendedor.getExpendedor().getProducto();
                     Moneda aux = panelExpendedor.getExpendedor().getVuelto();
@@ -72,19 +73,24 @@ public class PanelComprador extends JPanel {
                         aux = panelExpendedor.getExpendedor().getVuelto();
                     }
                     panelExpendedor.actualizarValores(panelExpendedor.getSeleccion(), panelExpendedor.getStockIndividual(panelExpendedor.getSeleccion().ordinal()));
+                    panelMoneda.actualizarTooltipMoneda();
                     botonConseguirProducto.setVisible(true);
                     System.out.println("Se ha comprado un producto: " + ultimoComprado.getSerie() + ", vuelto total: $" + vueltoDinero);
                 } else{
                     JOptionPane.showMessageDialog(null, "Recuerda retirar tu última compra", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                    panelMoneda.addMoneda(ultimaMoneda);
                 }
             } catch (PagoIncorrectoException ex) {
-                JOptionPane.showMessageDialog(null, "Debes elegir una moneda para pagar", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No tienes de ese tipo de monedas", "Advertencia", JOptionPane.WARNING_MESSAGE);
             } catch (NoHayProductoException ex) {
                 JOptionPane.showMessageDialog(null, "El producto seleccionado no está disponible", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                panelMoneda.addMoneda(ultimaMoneda);
             } catch (PagoInsuficienteException ex) {
                 JOptionPane.showMessageDialog(null, "No tienes suficiente dinero", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                panelMoneda.addMoneda(ultimaMoneda);
             } catch (NoSeleccionException ex) {
                 JOptionPane.showMessageDialog(null, "Debes seleccionar un producto primero", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                panelMoneda.addMoneda(ultimaMoneda);
             }
 
         });
@@ -107,7 +113,8 @@ public class PanelComprador extends JPanel {
             }
         });
 
-        JButton botonReinicio = new JButton("Limpiar vuelto");
+        // Botón de ver el vuelto y llevarlo a monedero
+        JButton botonReinicio = new JButton("Llevar vuelto a monedero");
         botonReinicio.setPreferredSize(new Dimension(340, 40));
         botonReinicio.setFont(PanelPrincipal.fuentePersonalizadaBotones);
         botonReinicio.setForeground(PanelPrincipal.AMARILLO);
@@ -116,6 +123,9 @@ public class PanelComprador extends JPanel {
         this.add(botonReinicio);
         botonReinicio.addActionListener(e -> {
             System.out.println("Boton apretado: Boton limpiar vuelto");
+            for(Moneda moneda : vueltoMonedas){
+                panelMoneda.addMoneda(moneda);
+            }
             vueltoDinero = 0;
             vueltoMonedas.clear();
         });

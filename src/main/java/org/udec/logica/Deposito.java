@@ -34,6 +34,10 @@ public class Deposito<T>{
         }
     }
 
+    public int getSize(){
+        return arrayList.size();
+    }
+
     /** Método que genera una nueva instancia de un {@code ArrayList} con los mismos valores de {@code arrayList}.
      * Esto para asegurar que la lista original no pueda ser modificada directamente por fuera de la clase.
      * @return Nuevo {@code ArrayList} con los valores de {@code arrayList}*/
