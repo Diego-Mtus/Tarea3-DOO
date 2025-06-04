@@ -182,6 +182,7 @@ public class PanelComprador extends JPanel {
 
     private void recibirVuelto(JDialog ventana){
 
+        vueltoMonedas.sort(Moneda::compareTo);
             for (Moneda mon : vueltoMonedas) {
                 JLabel moneda;
                 if (mon instanceof Moneda100) {
