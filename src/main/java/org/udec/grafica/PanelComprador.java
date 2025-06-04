@@ -1,7 +1,6 @@
 package org.udec.grafica;
 
 import org.udec.logica.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -17,12 +16,14 @@ public class PanelComprador extends JPanel {
     private int vueltoDinero = 0;
     private ArrayList<Moneda> vueltoMonedas;
     private Producto ultimoComprado = null;
-    private ImageIcon[] imagenMoneda;
 
+    private ImageIcon[] imagenMoneda;
     private ImageIcon[] imagenesVentanaProducto;
 
 
     public PanelComprador (PanelExpendedor panelExpendedor) {
+
+        // Ajustes de panelComprador
         this.setBackground(PanelPrincipal.ROJO);
         this.setSize(400, 800);
         this.setBounds(1000, 0, 400, 800);
@@ -47,6 +48,7 @@ public class PanelComprador extends JPanel {
             System.err.println("Error al cargar imagenes de panel comprador");
         }
 
+        // Creación de panel de monedas
         this.panelMoneda = new PanelMoneda();
         this.add(panelMoneda);
 
@@ -57,9 +59,8 @@ public class PanelComprador extends JPanel {
         botonComprar.setFocusable(false);
         botonComprar.setBackground(PanelPrincipal.OSCURO);
         botonComprar.setForeground(PanelPrincipal.AMARILLO);
-        botonComprar.setFont(PanelPrincipal.fuentePersonalizadaBotones);
+        botonComprar.setFont(PanelPrincipal.FUENTE_PERSONALIZADA);
         botonComprar.addActionListener(e -> {
-            System.out.println("Boton apretado");
             Moneda ultimaMoneda = panelMoneda.getMonedaSeleccionada();
             try {
                 if(ultimoComprado == null) {
@@ -100,12 +101,11 @@ public class PanelComprador extends JPanel {
         botonSaldo = new JButton("Ver vuelto total");
         botonSaldo.setPreferredSize(new Dimension(340, 80));
         botonSaldo.setFocusable(false);
-        botonSaldo.setFont(PanelPrincipal.fuentePersonalizadaBotones);
+        botonSaldo.setFont(PanelPrincipal.FUENTE_PERSONALIZADA);
         botonSaldo.setForeground(PanelPrincipal.AMARILLO);
         botonSaldo.setBackground(PanelPrincipal.OSCURO);
         this.add(botonSaldo);
         botonSaldo.addActionListener(e -> {
-            System.out.println("Boton apretado: Boton ver vuelto");
             if(!vueltoMonedas.isEmpty()){
                 crearVentanaVuelto();
             } else{
@@ -113,16 +113,15 @@ public class PanelComprador extends JPanel {
             }
         });
 
-        // Botón de ver el vuelto y llevarlo a monedero
+        // Botón de llevar vuelto a monedero
         JButton botonReinicio = new JButton("Llevar vuelto a monedero");
         botonReinicio.setPreferredSize(new Dimension(340, 40));
-        botonReinicio.setFont(PanelPrincipal.fuentePersonalizadaBotones);
+        botonReinicio.setFont(PanelPrincipal.FUENTE_PERSONALIZADA);
         botonReinicio.setForeground(PanelPrincipal.AMARILLO);
         botonReinicio.setBackground(PanelPrincipal.OSCURO);
         botonReinicio.setFocusable(false);
         this.add(botonReinicio);
         botonReinicio.addActionListener(e -> {
-            System.out.println("Boton apretado: Boton limpiar vuelto");
             for(Moneda moneda : vueltoMonedas){
                 panelMoneda.addMoneda(moneda);
             }
@@ -133,13 +132,12 @@ public class PanelComprador extends JPanel {
         // Botón de intercambiar monedas
         JButton botonReorganizar = new JButton("Intercambiar monedas");
         botonReorganizar.setPreferredSize(new Dimension(340, 40));
-        botonReorganizar.setFont(PanelPrincipal.fuentePersonalizadaBotones);
+        botonReorganizar.setFont(PanelPrincipal.FUENTE_PERSONALIZADA);
         botonReorganizar.setForeground(PanelPrincipal.AMARILLO);
         botonReorganizar.setBackground(PanelPrincipal.OSCURO);
         botonReorganizar.setFocusable(false);
         this.add(botonReorganizar);
         botonReorganizar.addActionListener(e -> {
-            System.out.println("Boton apretado: Boton reorganizar monedas");
             panelMoneda.reorganizarMonedas();
             JOptionPane.showMessageDialog(null, "¡Has intercambiado tus monedas!", "Información", JOptionPane.INFORMATION_MESSAGE);
         });
@@ -147,14 +145,13 @@ public class PanelComprador extends JPanel {
         // Botón de conseguir producto
         botonConseguirProducto = new JButton("Conseguir producto");
         botonConseguirProducto.setPreferredSize(new Dimension(340, 320));
-        botonConseguirProducto.setFont(PanelPrincipal.fuentePersonalizadaBotones);
+        botonConseguirProducto.setFont(PanelPrincipal.FUENTE_PERSONALIZADA);
         botonConseguirProducto.setForeground(PanelPrincipal.AMARILLO);
         botonConseguirProducto.setBackground(PanelPrincipal.OSCURO);
         botonConseguirProducto.setFocusable(false);
         botonConseguirProducto.setVisible(false);
         this.add(botonConseguirProducto);
         botonConseguirProducto.addActionListener(e -> {
-            System.out.println("Boton apretado: " + ultimoComprado.usar());
             crearVentanaConseguirProducto();
             botonConseguirProducto.setVisible(false);
             ultimoComprado = null;
@@ -166,7 +163,7 @@ public class PanelComprador extends JPanel {
         ventana.setLayout(new BorderLayout());
 
         JLabel texto = new JLabel(ultimoComprado.usar() + " Serie: " + ultimoComprado.getSerie());
-        texto.setFont(PanelPrincipal.fuentePersonalizadaBotones);
+        texto.setFont(PanelPrincipal.FUENTE_PERSONALIZADA);
         texto.setHorizontalAlignment(SwingConstants.CENTER);
         ventana.add(texto, BorderLayout.SOUTH);
 
@@ -189,6 +186,7 @@ public class PanelComprador extends JPanel {
     }
 
     private void crearVentanaVuelto(){
+        // Valor elegido por nosostros para no excederse del tamaño de ventana máximo.
         if(vueltoMonedas.size() < 30){
         JDialog ventana = new JDialog((JFrame) SwingUtilities.getWindowAncestor(PanelComprador.this), "Vuelto", true);
         ventana.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -222,9 +220,8 @@ public class PanelComprador extends JPanel {
                 ventana.add(moneda);
             }
 
-
             JLabel texto = new JLabel("Total: " + vueltoDinero + " pesos.");
-            texto.setFont(PanelPrincipal.fuentePersonalizadaBotones);
+            texto.setFont(PanelPrincipal.FUENTE_PERSONALIZADA);
             ventana.add(texto, BorderLayout.SOUTH);
 
     }

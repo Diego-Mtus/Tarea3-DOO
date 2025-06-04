@@ -14,7 +14,7 @@ public class PanelPrincipal extends JPanel {
     public final static Color CELESTE = new Color(140, 188, 185);
     public final static Color AMARILLO = new Color(221, 164, 72);
     public final static Color ROJO = new Color(187, 52, 47);
-    public final static Font fuentePersonalizadaBotones = new Font("Dialog", Font.BOLD, 24);
+    public final static Font FUENTE_PERSONALIZADA = new Font("Dialog", Font.BOLD, 24);
 
     public PanelPrincipal () {
 

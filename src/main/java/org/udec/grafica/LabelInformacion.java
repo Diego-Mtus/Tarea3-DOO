@@ -8,11 +8,11 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class LabelInformacion extends JLabel {
+
     private String textoInformativo = "¿Qué producto desea comprar?";
     private ProductosEnum productoSeleccionado;
     private int stockProductoSeleccionado;
     private Font fuenteInformacion;
-
 
     public LabelInformacion(int x, int y) {
         try {
@@ -39,7 +39,7 @@ public class LabelInformacion extends JLabel {
 
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
-            fuenteInformacion = PanelPrincipal.fuentePersonalizadaBotones;
+            fuenteInformacion = PanelPrincipal.FUENTE_PERSONALIZADA;
         }
 
         this.setText(textoInformativo);

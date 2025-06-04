@@ -117,7 +117,7 @@ public class PanelExpendedor extends JPanel {
 
         ArrayList<ArrayList<Producto>> depositosNuevo = expendedor.getDepositos();
 
-        // Revisa si elemento ya estaba en deposito antes
+        // Revisa si elemento ya estaba en depósito antes
         for (ArrayList<Producto> subdeposito : depositosNuevo) {
             for (int i = 0; i < subdeposito.size(); i++) {
                 if(depositos.get(depositosNuevo.indexOf(subdeposito)).contains(subdeposito.get(i))){
@@ -127,12 +127,11 @@ public class PanelExpendedor extends JPanel {
             }
         }
 
-        // Añade productos al labels de deposito de productos.
+        // Añade productos al labels de depósito de productos.
 
         // COCACOLA
         for (Producto prod : depositosNuevo.get(0)) {
             // Borrar comentario después.
-            System.out.println(prod.getSerie());
             ldpCoca.addProducto(new LabelProducto(prod, imagenesProductos[0]));
         }
 

@@ -1,8 +1,5 @@
 package org.udec.grafica;
 
-import org.udec.logica.Expendedor;
-import org.udec.logica.ProductosEnum;
-
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +12,6 @@ public class LabelDepositoProducto extends JLabel {
 
     public LabelDepositoProducto (int x, int y) {
 
-        // cambiar imagen después
         try {
             ImageIcon imagen = new ImageIcon(getClass().getResource("/deposito.png"));
             this.setIcon(imagen);
@@ -37,7 +33,6 @@ public class LabelDepositoProducto extends JLabel {
         Timer timerAnim = new Timer();
         int pixY = p.getHeight();
         int posX = (this.getWidth() - p.getWidth()) / 2;
-
 
         int segundos = 1;
         int periodo = 100;
@@ -65,7 +60,6 @@ public class LabelDepositoProducto extends JLabel {
         int posX = (this.getWidth() - p.getWidth()) / 2;
         // Si es el primer producto añadido al deposito.
         if (this.productos.size() == 1) {
-            // FIXME: VER POSICIONES
             p.setXY(posX, this.getHeight() - p.getHeight() - 5);
             p.setVisible(true);
         } else{

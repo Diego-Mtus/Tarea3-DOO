@@ -1,7 +1,6 @@
 package org.udec.grafica;
 
 import org.udec.logica.*;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -26,9 +25,10 @@ public class PanelMoneda extends JPanel {
         this.setVisible(true);
 
         JLabel texto = new JLabel("Deposito de monedas");
-        texto.setFont(PanelPrincipal.fuentePersonalizadaBotones);
+        texto.setFont(PanelPrincipal.FUENTE_PERSONALIZADA);
         texto.setForeground(PanelPrincipal.AMARILLO);
         this.add(texto, BorderLayout.NORTH);
+
         JPanel botones = new JPanel();
         botones.setOpaque(false);
         botones.setBorder(null);
@@ -38,8 +38,8 @@ public class PanelMoneda extends JPanel {
         depositoMoneda500 = new Deposito<>();
         depositoMoneda1000 = new Deposito<>();
 
-        // Cantidad inicial de monedas: "El comprador debe empezar con una suma de dinero suficiente para varias compras y ser capaz de recoger el
-        // vuelto a medida que avanza"
+        // Cantidad inicial de monedas: "El comprador debe empezar con una suma de dinero suficiente para varias compras
+        // y ser capaz de recoger el vuelto a medida que avanza"
         depositoMoneda100.add(new Moneda100());
         depositoMoneda500.add(new Moneda500());
         depositoMoneda500.add(new Moneda500());
@@ -47,40 +47,41 @@ public class PanelMoneda extends JPanel {
         depositoMoneda1000.add(new Moneda1000());
         depositoMoneda1000.add(new Moneda1000());
 
+        // Inicialización de botón de moneda de 100 pesos
         botonMoneda100 = new JButton();
         botonMoneda100.setPreferredSize(new Dimension(110, 110));
         botonMoneda100.setOpaque(true);
         botonMoneda100.setVisible(true);
         botonMoneda100.setFocusable(false);
-        botonMoneda100.setFont(PanelPrincipal.fuentePersonalizadaBotones);
+        botonMoneda100.setFont(PanelPrincipal.FUENTE_PERSONALIZADA);
         botonMoneda100.setText("$100");
         botonMoneda100.setToolTipText("Cantidad: " + depositoMoneda100.getSize());
-        //this.add(botonMoneda100, BorderLayout.WEST);
         botones.add(botonMoneda100);
 
+        // Inicialización de botón de moneda de 500 pesos
         botonMoneda500 = new JButton();
         botonMoneda500.setPreferredSize(new Dimension(110, 110));
         botonMoneda500.setOpaque(true);
         botonMoneda500.setVisible(true);
         botonMoneda500.setFocusable(false);
-        botonMoneda500.setFont(PanelPrincipal.fuentePersonalizadaBotones);
+        botonMoneda500.setFont(PanelPrincipal.FUENTE_PERSONALIZADA);
         botonMoneda500.setText("$500");
         botonMoneda500.setToolTipText("Cantidad: " + depositoMoneda500.getSize());
-        //this.add(botonMoneda500, BorderLayout.CENTER);
         botones.add(botonMoneda500);
 
+        // Inicialización de botón de moneda de 1000 pesos
         botonMoneda1000 = new JButton();
         botonMoneda1000.setPreferredSize(new Dimension(110, 110));
         botonMoneda1000.setOpaque(true);
         botonMoneda1000.setVisible(true);
         botonMoneda1000.setFocusable(false);
-        botonMoneda1000.setFont(PanelPrincipal.fuentePersonalizadaBotones);
+        botonMoneda1000.setFont(PanelPrincipal.FUENTE_PERSONALIZADA);
         botonMoneda1000.setText("$1000");
         botonMoneda1000.setToolTipText("Cantidad: " + depositoMoneda1000.getSize());
-        //this.add(botonMoneda1000, BorderLayout.EAST);
         botones.add(botonMoneda1000);
         this.add(botones, BorderLayout.CENTER);
 
+        // ActionListener que se encarga de elegir moneda dependiendo del último click.
         botonMoneda100.addActionListener(e -> {
             monedaTipo = 100;
             repaint(1200,0,400,400);

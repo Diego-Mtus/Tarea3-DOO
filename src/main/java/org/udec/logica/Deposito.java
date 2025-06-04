@@ -34,6 +34,10 @@ public class Deposito<T>{
         }
     }
 
+    /** Método que sirve para obtener tamaño del depósito.
+     *
+     * @return Retorna cantidad de elementos que contiene depósito.
+     */
     public int getSize(){
         return arrayList.size();
     }
