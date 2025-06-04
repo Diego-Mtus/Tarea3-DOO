@@ -124,6 +124,31 @@ public class PanelMoneda extends JPanel {
         botonMoneda1000.setToolTipText("Cantidad: " + depositoMoneda1000.getSize());
     }
 
+    public void reorganizarMonedas(){
+        while(depositoMoneda100.getSize() >= 5){
+            // Si la cantidad de monedas de 100 es suficiente para hacer un billete de mil
+            if(depositoMoneda100.getSize() >= 10){
+                // "Intercambiamos" monedas
+                for(int i = 0; i < 10; i++){
+                    depositoMoneda100.get();
+                }
+                depositoMoneda1000.add(new Moneda1000());
+            } else{
+                for(int i = 0; i < 5; i++){
+                    depositoMoneda100.get();
+                }
+                depositoMoneda500.add(new Moneda500());
+            }
+        }
+        while(depositoMoneda500.getSize() >= 2){
+            depositoMoneda500.get();
+            depositoMoneda500.get();
+            depositoMoneda1000.add(new Moneda1000());
+        }
+
+        actualizarTooltipMoneda();
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

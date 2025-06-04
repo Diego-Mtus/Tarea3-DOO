@@ -130,6 +130,20 @@ public class PanelComprador extends JPanel {
             vueltoMonedas.clear();
         });
 
+        // Botón de intercambiar monedas
+        JButton botonReorganizar = new JButton("Intercambiar monedas");
+        botonReorganizar.setPreferredSize(new Dimension(340, 40));
+        botonReorganizar.setFont(PanelPrincipal.fuentePersonalizadaBotones);
+        botonReorganizar.setForeground(PanelPrincipal.AMARILLO);
+        botonReorganizar.setBackground(PanelPrincipal.OSCURO);
+        botonReorganizar.setFocusable(false);
+        this.add(botonReorganizar);
+        botonReorganizar.addActionListener(e -> {
+            System.out.println("Boton apretado: Boton reorganizar monedas");
+            panelMoneda.reorganizarMonedas();
+            JOptionPane.showMessageDialog(null, "¡Has intercambiado tus monedas!", "Información", JOptionPane.INFORMATION_MESSAGE);
+        });
+
         // Botón de conseguir producto
         botonConseguirProducto = new JButton("Conseguir producto");
         botonConseguirProducto.setPreferredSize(new Dimension(340, 340));
