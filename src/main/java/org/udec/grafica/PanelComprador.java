@@ -146,7 +146,7 @@ public class PanelComprador extends JPanel {
 
         // Botón de conseguir producto
         botonConseguirProducto = new JButton("Conseguir producto");
-        botonConseguirProducto.setPreferredSize(new Dimension(340, 340));
+        botonConseguirProducto.setPreferredSize(new Dimension(340, 320));
         botonConseguirProducto.setFont(PanelPrincipal.fuentePersonalizadaBotones);
         botonConseguirProducto.setForeground(PanelPrincipal.AMARILLO);
         botonConseguirProducto.setBackground(PanelPrincipal.OSCURO);

@@ -146,7 +146,7 @@ public class PanelSelectorProducto extends JPanel {
             }
         });
         this.add(botonSuper8);
-        this.add(Box.createRigidArea(new Dimension(0,8)));
+        this.add(Box.createRigidArea(new Dimension(0,190)));
         botonRestock = new JLabel(imagenesLogoProducto[5][0]);
         botonRestock.addMouseListener(new MouseAdapter() {
             @Override
@@ -166,7 +166,6 @@ public class PanelSelectorProducto extends JPanel {
             }
         });
         this.add(botonRestock);
-        this.add(Box.createRigidArea(new Dimension(0,4)));
 
         this.setVisible(true);
     }

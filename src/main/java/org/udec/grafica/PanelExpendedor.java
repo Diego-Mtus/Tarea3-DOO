@@ -21,11 +21,12 @@ public class PanelExpendedor extends JPanel {
     private ProductosEnum seleccion;
 
     public ImageIcon[] imagenesProductos;
+    private ImageIcon imagenExpendedor;
 
     private int cantidadProductos = 15; // ESTA VARIABLE CONTROLA LA CANTIDAD INICIAL.
 
     public PanelExpendedor() {
-        this.setBackground(PanelPrincipal.GRIS);
+        this.setBackground(PanelPrincipal.CELESTE);
         this.setSize(1000, 800);
         this.setLayout(null);
 
@@ -62,13 +63,14 @@ public class PanelExpendedor extends JPanel {
 
         // - Fin de sección de inicializar depositos de expendedores
 
+        // Label que muestra la información de producto seleccionado
         labelInformativo = new LabelInformacion(160, 64);
         this.add(labelInformativo);
 
 
-
+        // Panel que maneja los botones de selección
         PanelSelectorProducto pselector = new PanelSelectorProducto(this);
-        pselector.setBounds(740, 300, 120,300);
+        pselector.setBounds(734, 254, 120,600);
         this.add(pselector);
 
         this.setVisible(true);
@@ -77,6 +79,7 @@ public class PanelExpendedor extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        g.drawImage(imagenExpendedor.getImage(), 50, 28, imagenExpendedor.getIconWidth()+1, imagenExpendedor.getIconHeight(), this);
     }
 
     public void actualizarValores(ProductosEnum producto, int stock){
@@ -98,6 +101,7 @@ public class PanelExpendedor extends JPanel {
             for(ProductosEnum prod : ProductosEnum.values()){
                 imagenesProductos[prod.ordinal()] = new ImageIcon(getClass().getResource("/" + prod.getNombreImagen()));
             }
+            imagenExpendedor = new ImageIcon(getClass().getResource("/expendedor.png"));
         } catch (Exception e) {
             System.err.println("Error al cargar imagenes de productos");
         }

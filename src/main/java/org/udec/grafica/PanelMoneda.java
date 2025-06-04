@@ -26,7 +26,7 @@ public class PanelMoneda extends JPanel {
         this.setVisible(true);
 
         JLabel texto = new JLabel("Deposito de monedas");
-        texto.setFont(new Font("Serif", Font.BOLD, 24));
+        texto.setFont(PanelPrincipal.fuentePersonalizadaBotones);
         texto.setForeground(PanelPrincipal.AMARILLO);
         this.add(texto, BorderLayout.NORTH);
         JPanel botones = new JPanel();
