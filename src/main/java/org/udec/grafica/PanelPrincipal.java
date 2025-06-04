@@ -29,6 +29,15 @@ public class PanelPrincipal extends JPanel {
         this.add(com);
 
         this.setVisible(true);
+
+        // Se muestra mensaje de bienvenida después de que haya cargado panel principal.
+        SwingUtilities.invokeLater(() -> {
+            JOptionPane.showMessageDialog(this, "¡Bienvenido a nuestro expendedor de productos!\n" +
+                            "Puedes ver tus monedas disponibles dejando el mouse encima de los botones de moneda.\n" +
+                            "También puedes ver el número de serie de los productos de la misma forma.",
+                    "Bienvenida", JOptionPane.PLAIN_MESSAGE);
+        });
+
     }
     public void paintComponent (Graphics g) {
         super.paintComponent(g);
