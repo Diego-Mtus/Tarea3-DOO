@@ -1,13 +1,19 @@
 package org.udec.grafica;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
 
 
 public class PanelPrincipal extends JPanel {
     private PanelComprador com;
     private PanelExpendedor exp;
-
+    private Clip loop;
     // VARIABLES GLOBALES DE COLOR Y FUENTE
     public final static Color OSCURO = new Color(100, 40, 40);
     public final static Color GRIS = new Color(197,203,211);
@@ -23,7 +29,24 @@ public class PanelPrincipal extends JPanel {
 
         exp = new PanelExpendedor();
         com = new PanelComprador(exp);
+        try {
+            InputStream sonidoStreamHover = getClass().getResourceAsStream("/loop.wav");
+            if (sonidoStreamHover == null) {
+                throw new IllegalArgumentException("Recurso no encontrado: /loop.wav");
+            }
+            AudioInputStream audioInputStreamLoop = AudioSystem.getAudioInputStream(new BufferedInputStream(sonidoStreamHover));
 
+            loop = AudioSystem.getClip();
+            loop.open(audioInputStreamLoop);
+
+            FloatControl controlVolumenLoop = (FloatControl) loop.getControl(FloatControl.Type.MASTER_GAIN);
+            controlVolumenLoop.setValue(-18.0f);
+
+            loop.start();
+            loop.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         // Agregamos los paneles
         this.add(exp);
         this.add(com);
