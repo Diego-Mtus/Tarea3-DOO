@@ -109,52 +109,40 @@ public class PanelExpendedor extends JPanel {
 
 
 
-    public void actualizarStock(int cantidadAdd) {
-        expendedor.recargarStock(cantidadAdd);
+    public void actualizarStock() {
+
+        ArrayList<ArrayList<Producto>> depositosRevisarVacio = expendedor.getDepositos();
+
         for(int i = 0; i < 5; i++){
-            stockIndividual[i] += cantidadAdd;
-        }
+            if (depositosRevisarVacio.get(i).isEmpty()){
+                // Se recarga si estaba vacío
+                expendedor.recargarStock(cantidadProductos, ProductosEnum.values()[i]);
+                stockIndividual[i] = cantidadProductos;
 
-        ArrayList<ArrayList<Producto>> depositosNuevo = expendedor.getDepositos();
-
-        // Revisa si elemento ya estaba en depósito antes
-        for (ArrayList<Producto> subdeposito : depositosNuevo) {
-            for (int i = 0; i < subdeposito.size(); i++) {
-                if(depositos.get(depositosNuevo.indexOf(subdeposito)).contains(subdeposito.get(i))){
-                    subdeposito.remove(i);
-                    i--;
+                // Auxiliar para ir añadiendo los productos nuevos del expendedor al label de depósito.
+                ArrayList<ArrayList<Producto>> depositosAuxiliar = expendedor.getDepositos();
+                for(Producto prod: depositosAuxiliar.get(i)){
+                    switch (ProductosEnum.values()[i]){
+                        case COCACOLA:
+                            ldpCoca.addProducto(new LabelProducto(prod, imagenesProductos[0]));
+                            break;
+                        case SPRITE:
+                            ldpSprite.addProducto(new LabelProducto(prod, imagenesProductos[1]));
+                            break;
+                        case FANTA:
+                            ldpFanta.addProducto(new LabelProducto(prod, imagenesProductos[2]));
+                            break;
+                        case SNICKERS:
+                            ldpSnickers.addProducto(new LabelProducto(prod, imagenesProductos[3]));
+                            break;
+                        case SUPER8:
+                            ldpSuper8.addProducto(new LabelProducto(prod, imagenesProductos[4]));
+                            break;
+                    }
                 }
+
             }
         }
-
-        // Añade productos al labels de depósito de productos.
-
-        // COCACOLA
-        for (Producto prod : depositosNuevo.get(0)) {
-            // Borrar comentario después.
-            ldpCoca.addProducto(new LabelProducto(prod, imagenesProductos[0]));
-        }
-
-        // SPRITE
-        for (Producto prod : depositosNuevo.get(1)) {
-            ldpSprite.addProducto(new LabelProducto(prod, imagenesProductos[1]));
-        }
-
-        // FANTA
-        for (Producto prod : depositosNuevo.get(2)) {
-            ldpFanta.addProducto(new LabelProducto(prod, imagenesProductos[2]));
-        }
-
-        // SNICKERS
-        for (Producto prod : depositosNuevo.get(3)) {
-            ldpSnickers.addProducto(new LabelProducto(prod, imagenesProductos[3]));
-        }
-
-        // SUPER8
-        for (Producto prod : depositosNuevo.get(4)) {
-            ldpSuper8.addProducto(new LabelProducto(prod, imagenesProductos[4]));
-        }
-
     }
 
     // Para ser usado en PanelSelectorProducto

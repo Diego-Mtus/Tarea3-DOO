@@ -41,8 +41,11 @@ public class PanelMoneda extends JPanel {
         // Cantidad inicial de monedas: "El comprador debe empezar con una suma de dinero suficiente para varias compras
         // y ser capaz de recoger el vuelto a medida que avanza"
         depositoMoneda100.add(new Moneda100());
+        depositoMoneda100.add(new Moneda100());
         depositoMoneda500.add(new Moneda500());
         depositoMoneda500.add(new Moneda500());
+        depositoMoneda500.add(new Moneda500());
+        depositoMoneda1000.add(new Moneda1000());
         depositoMoneda1000.add(new Moneda1000());
         depositoMoneda1000.add(new Moneda1000());
         depositoMoneda1000.add(new Moneda1000());

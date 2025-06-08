@@ -235,7 +235,7 @@ public class PanelSelectorProducto extends JPanel {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                panelExpendedor.actualizarStock(10);
+                panelExpendedor.actualizarStock();
                 panelExpendedor.mostrarRenovacion();
                 reproducirSonido(clipClick);
             }

@@ -22,7 +22,7 @@ public class Expendedor {
     /** Simula el depósito de retirar el producto comprado */
     private Producto depositoRetiro;
 
-    private static int serieContador = 0;
+    private static int[] serieContador = {100,200,300,400,500};
 
 
 
@@ -37,14 +37,12 @@ public class Expendedor {
         depositoSuper8 = new Deposito<Producto>();
         depositoMonedas = new Deposito<Moneda>();
         for(int i = 0; i < cantidad; i++){
-            depositoCocaCola.add(new CocaCola(100+serieContador));
-            depositoSprite.add(new Sprite(200+serieContador));
-            depositoFanta.add(new Fanta(300+serieContador));
-            depositoSnickers.add(new Snickers(400+serieContador));
-            depositoSuper8.add(new Super8(500+serieContador));
+            depositoCocaCola.add(new CocaCola(serieContador[0]++));
+            depositoSprite.add(new Sprite(serieContador[1]++));
+            depositoFanta.add(new Fanta(serieContador[2]++));
+            depositoSnickers.add(new Snickers(serieContador[3]++));
+            depositoSuper8.add(new Super8(serieContador[4]++));
 
-            // Esto nos garantiza que al renovar stock se mantenga el orden de la serie de productos.
-            serieContador++;
         }
 
     }
@@ -55,14 +53,33 @@ public class Expendedor {
      *
      * @param cantidad Cantidad de productos que se quieren añadir
      * */
-    public void recargarStock(int cantidad){
-        for(int i = 0; i < cantidad; i++){
-            depositoCocaCola.add(new CocaCola(100+serieContador));
-            depositoSprite.add(new Sprite(200+serieContador));
-            depositoFanta.add(new Fanta(300+serieContador));
-            depositoSnickers.add(new Snickers(400+serieContador));
-            depositoSuper8.add(new Super8(500+serieContador));
-            serieContador++;
+    public void recargarStock(int cantidad, ProductosEnum eleccion){
+        switch (eleccion){
+            case COCACOLA -> {
+                for(int i = 0; i < cantidad; i++){
+                    depositoCocaCola.add(new CocaCola(serieContador[0]++));
+                }
+            }
+            case SPRITE -> {
+                for(int i = 0; i < cantidad; i++){
+                    depositoSprite.add(new Sprite(serieContador[1]++));
+                }
+            }
+            case FANTA -> {
+                for(int i = 0; i < cantidad; i++){
+                    depositoFanta.add(new Fanta(serieContador[2]++));
+                }
+            }
+            case SUPER8 -> {
+                for(int i = 0; i < cantidad; i++){
+                    depositoSuper8.add(new Super8(serieContador[4]++));
+                }
+            }
+            case SNICKERS -> {
+                for(int i = 0; i < cantidad; i++){
+                    depositoSnickers.add(new Snickers(serieContador[3]++));
+                }
+            }
         }
     }
 
