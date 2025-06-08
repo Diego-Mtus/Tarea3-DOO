@@ -6,9 +6,14 @@ import java.util.List;
 import java.util.TimerTask;
 import java.util.Timer;
 
+/**
+ * Clase LabelDepositoProducto que representa un depósito gráfico en el que se almacenan
+ * objetos de tipo LabelProducto. Hereda de la clase JLabel y permite manejar animaciones
+ * y visibilidades de los productos añadidos al depósito.
+ */
 public class LabelDepositoProducto extends JLabel {
     private List<LabelProducto> productos;
-    private final int MAX_PRODUCTOS = 15;
+    public static final int MAX_PRODUCTOS = 15;
 
     public LabelDepositoProducto (int x, int y) {
 
@@ -55,6 +60,14 @@ public class LabelDepositoProducto extends JLabel {
         timerAnim.scheduleAtFixedRate(accion, 250, periodo);
     }
 
+    /**
+     * Añade un producto al depósito, colocándolo en la posición correspondiente dentro del contenedor.
+     * Si el producto es el primero, se posiciona en la base del depósito.
+     * Para los productos siguientes, se posicionan sobre el último producto añadido.
+     * Se limita la visibilidad de los productos a un máximo definido por MAX_PRODUCTOS.
+     *
+     * @param p LabelProducto que se añadirá al depósito.
+     */
     public void addProducto(LabelProducto p) {
         this.productos.add(p);
         int posX = (this.getWidth() - p.getWidth()) / 2;
@@ -71,6 +84,17 @@ public class LabelDepositoProducto extends JLabel {
         this.add(p);
     }
 
+    /**
+     * Elimina un producto del depósito, retirando el producto que se encuentra
+     * en la primera posición de la lista de productos (parte inferior del depósito).
+     *
+     * <p>
+     * Si la lista de productos no está vacía:
+     * - Elimina el primer producto de la lista y del contenedor.
+     * - Si hay un producto oculto debido a MAX_PRODUCTO, se hace visible.
+     * - Aplica una animación para ajustarlos a sus nuevas posiciones.
+     * </p>
+     */
     public void removeProducto() {
         if (!productos.isEmpty()) {
             this.productos.removeFirst();

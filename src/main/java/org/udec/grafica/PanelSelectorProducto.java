@@ -12,6 +12,16 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
+/**
+ * Clase PanelSelectorProducto que representa un panel gráfico para seleccionar productos en expendedor.
+ * Este panel incluye imagenes interactivas que permiten seleccionar distintos productos.
+ * <p>
+ * Características principales:
+ * - Presenta botones representados como imagenes que reaccionan al pasar el mouse encima.
+ * - Implementa sonidos para acciones como hover y clic.
+ * - Se conecta con el panel expendedor para gestionar la selección y stock de productos.
+ *</p>
+ */
 public class PanelSelectorProducto extends JPanel {
 
     private ImageIcon[][] imagenesLogoProducto;
@@ -81,6 +91,7 @@ public class PanelSelectorProducto extends JPanel {
 
 
         // Inicialización y funcionamiento de botones.
+        // Cada boton de producto establece como último seleccionado a su producto correspondiente
         botonCocacola = new JLabel(imagenesLogoProducto[0][0]);
         botonCocacola.addMouseListener(new MouseAdapter() {
             @Override

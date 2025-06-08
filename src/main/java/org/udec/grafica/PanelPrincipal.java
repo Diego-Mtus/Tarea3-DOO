@@ -11,12 +11,13 @@ import java.io.InputStream;
 
 
 public class PanelPrincipal extends JPanel {
+
     private PanelComprador com;
     private PanelExpendedor exp;
     private Clip loop;
+
     // VARIABLES GLOBALES DE COLOR Y FUENTE
     public final static Color OSCURO = new Color(100, 40, 40);
-    public final static Color GRIS = new Color(197,203,211);
     public final static Color CELESTE = new Color(140, 188, 185);
     public final static Color AMARILLO = new Color(221, 164, 72);
     public final static Color ROJO = new Color(187, 52, 47);

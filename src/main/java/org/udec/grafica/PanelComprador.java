@@ -5,6 +5,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * PanelComprador es una clase que representa un panel en una interfaz gráfica donde
+ * el usuario puede interactuar con un expendedor de productos utilizando monedas.
+ * Este panel incluye funcionalidades para comprar productos, manejar el vuelto e intercambiar monedas.
+ *<p>
+ * Funcionalidades principales:
+ * - Permite al usuario seleccionar, comprar un producto y manejar el vuelto.
+ * - Interactúa con un PanelExpendedor para ejecutar las compras.
+ * - Proporciona botones para ver el vuelto, mover monedas al monedero, reorganizar monedas,
+ *   y retirar productos comprados.
+ *</p><p>
+ * Comportamiento:
+ * - Los eventos asociados a botones gestionan todo el flujo de compra, incluyendo
+ *   validaciones de monedas, stock del producto, selección, entre otros.
+ * - Se gestionan excepciones específicas como PagoIncorrectoException, NoHayProductoException,
+ *   PagoInsuficienteException y NoSeleccionException para garantizar una experiencia controlada.
+ *</p>
+ */
 public class PanelComprador extends JPanel {
 
     private PanelMoneda panelMoneda;

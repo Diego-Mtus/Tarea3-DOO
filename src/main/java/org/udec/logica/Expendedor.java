@@ -48,10 +48,10 @@ public class Expendedor {
     }
 
 
-    /** Método que recarga el stock de los productos del expendedor con
-     * una generación de números de serie continua.
+    /** Método que recarga el stock del producto elegido, manteniendo sus series de forma continua.
      *
      * @param cantidad Cantidad de productos que se quieren añadir
+     * @param eleccion Producto al que se le quiere recargar stock
      * */
     public void recargarStock(int cantidad, ProductosEnum eleccion){
         switch (eleccion){

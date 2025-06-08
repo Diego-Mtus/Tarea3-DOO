@@ -6,6 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Clase que representa el panel principal para la interacción con un expendedor de productos.
+ * Está diseñada para mostrar visualmente los diferentes depósitos de productos,
+ * actualizar el stock en tiempo real y manejar las selecciones realizadas por el usuario.
+ */
 public class PanelExpendedor extends JPanel {
 
     private Expendedor expendedor;
@@ -23,7 +28,7 @@ public class PanelExpendedor extends JPanel {
     public ImageIcon[] imagenesProductos;
     private ImageIcon imagenExpendedor;
 
-    private int cantidadProductos = 15; // ESTA VARIABLE CONTROLA LA CANTIDAD INICIAL.
+    private int cantidadProductos = LabelDepositoProducto.MAX_PRODUCTOS; // ESTA VARIABLE CONTROLA LA CANTIDAD INICIAL.
 
     public PanelExpendedor() {
         this.setBackground(PanelPrincipal.CELESTE);
@@ -82,10 +87,30 @@ public class PanelExpendedor extends JPanel {
         g.drawImage(imagenExpendedor.getImage(), 50, 28, imagenExpendedor.getIconWidth()+1, imagenExpendedor.getIconHeight(), this);
     }
 
+
+    /**
+     * Llama al método actualizarValores() del labelInfomativo.
+     *
+     * @param producto El producto a actualizar, de tipo ProductosEnum.
+     * @param stock La cantidad de stock disponible para el producto.
+     */
     public void actualizarValores(ProductosEnum producto, int stock){
         labelInformativo.actualizarValores(producto, stock);
     }
 
+    /**
+     * Actualiza la interfaz gráfica para reflejar la recarga de stock e información.
+     *
+     *
+     * Este método realiza dos acciones principales:
+     * </p>
+     * 1. Llama al método mostrarRenovacion() de labelInformativo para
+     *    notificar al usuario que los depósitos vacíos han sido repuestos.
+     * <p>
+     * 2. Repinta las áreas específicas de la interfaz correspondientes a cada
+     *    depósito de producto, asegurando que los cambios sean visibles en pantalla.
+     * </p>
+     */
     public void mostrarRenovacion(){
         labelInformativo.mostrarRenovacion();
         repaint(ldpCoca.getX(), ldpCoca.getY(), ldpCoca.getWidth(), ldpCoca.getHeight());
@@ -109,6 +134,10 @@ public class PanelExpendedor extends JPanel {
 
 
 
+    /**
+     * Método que verifica los depósitos de productos en el expendedor y recarga aquellos
+     * que se encuentren vacíos, actualizando el stock y la interfaz gráfica del panel.
+     */
     public void actualizarStock() {
 
         ArrayList<ArrayList<Producto>> depositosRevisarVacio = expendedor.getDepositos();
@@ -145,24 +174,49 @@ public class PanelExpendedor extends JPanel {
         }
     }
 
+    /**
+     * Establece el producto seleccionado en el panel.
+     *
+     * @param seleccion El producto a seleccionar, de tipo ProductosEnum.
+     */
     // Para ser usado en PanelSelectorProducto
     public void setSeleccion(ProductosEnum seleccion) {
         this.seleccion = seleccion;
     }
 
+    /**
+     * Obtiene el producto actualmente seleccionado en el panel expendedor.
+     *
+     * @return El producto seleccionado, de tipo ProductosEnum.
+     */
     public ProductosEnum getSeleccion(){
         return seleccion;
     }
 
+    /**
+     * Devuelve la cantidad de stock disponible para un producto específico.
+     *
+     * @param i El índice del producto para el cual se desea obtener el stock.
+     * @return La cantidad de stock disponible para el producto indicado por el índice.
+     */
     public int getStockIndividual(int i){
         return stockIndividual[i];
     }
 
 
+    /**
+     * Devuelve el objeto Expendedor asociado al panel.
+     *
+     * @return el objeto Expendedor que representa el expendedor en el panel.
+     */
     public Expendedor getExpendedor(){
         return expendedor;
     }
 
+    /**
+     * Elimina un producto del inventario y actualiza la interfaz gráfica del depósito correspondiente
+     * basado en el último producto seleccionado.
+     */
     public void removeProducto(){
         switch (seleccion){
             case COCACOLA:

@@ -4,6 +4,12 @@ import org.udec.logica.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * La clase PanelMoneda representa el componente gráfico diseñado específicamente para gestionar un
+ * sistema de selección y almacenamiento de monedas en diferentes denominaciones (100, 500 y 1000).
+ * Este panel permite la interacción del usuario mediante botones para elegir las monedas y manipular
+ * los depósitos de manera dinámica.
+ */
 public class PanelMoneda extends JPanel {
 
     private JButton botonMoneda100;
@@ -100,6 +106,12 @@ public class PanelMoneda extends JPanel {
 
     }
 
+    /**
+     * Obtiene una moneda seleccionada del depósito correspondiente según su tipo asignado por los botones.
+     *
+     * @return La moneda seleccionada del depósito asociado al tipo de moneda especificado
+     *         (100, 500 o 1000).
+     */
     public Moneda getMonedaSeleccionada() {
         return switch (monedaTipo) {
             case 100 -> depositoMoneda100.get();
@@ -109,25 +121,41 @@ public class PanelMoneda extends JPanel {
         };
     }
 
+    /**
+     * Añade una moneda al depósito correspondiente según su tipo y actualiza
+     * el tooltip del botón asociado para reflejar la cantidad actual de monedas de esa denominación.
+     *
+     * @param moneda Moneda que se desea añadir al depósito.
+     */
     public void addMoneda(Moneda moneda) {
-        if (moneda instanceof Moneda100) {
+        if (moneda.getValor() == 100) {
             depositoMoneda100.add(moneda);
             botonMoneda100.setToolTipText("Cantidad: " + depositoMoneda100.getSize());
-        } else if (moneda instanceof Moneda500) {
+        } else if (moneda.getValor() == 500) {
             depositoMoneda500.add(moneda);
             botonMoneda500.setToolTipText("Cantidad: " + depositoMoneda500.getSize());
-        } else if (moneda instanceof Moneda1000) {
+        } else if (moneda.getValor() == 1000) {
             depositoMoneda1000.add(moneda);
             botonMoneda1000.setToolTipText("Cantidad: " + depositoMoneda1000.getSize());
         }
     }
 
+    /**
+     * Método encargado de actualizar los tooltips de los botones de monedas.
+     * Cada tooltip muestra la cantidad actual de monedas disponibles en los respectivos depósitos
+     * de acuerdo a su denominación (100, 500, 1000).
+     */
     public void actualizarTooltipMoneda(){
         botonMoneda100.setToolTipText("Cantidad: " + depositoMoneda100.getSize());
         botonMoneda500.setToolTipText("Cantidad: " + depositoMoneda500.getSize());
         botonMoneda1000.setToolTipText("Cantidad: " + depositoMoneda1000.getSize());
     }
 
+    /**
+     * Método encargado de reorganizar las monedas acumuladas en los depósitos de denominación
+     * 100 y 500. Convierte monedas de menor denominación en monedas de mayor denominación
+     * (500 y 1000) cuando se cumplen las cantidades necesarias.
+     */
     public void reorganizarMonedas(){
         while(depositoMoneda100.getSize() >= 5){
             // Si la cantidad de monedas de 100 es suficiente para hacer un billete de mil

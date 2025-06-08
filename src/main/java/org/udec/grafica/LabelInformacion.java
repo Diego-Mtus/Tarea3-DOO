@@ -7,6 +7,10 @@ import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * Clase LabelInformacion que extiende JLabel para mostrar información
+ * sobre los productos disponibles y seleccionados en una interfaz gráfica.
+ */
 public class LabelInformacion extends JLabel {
 
     private String textoInformativo = "¿Qué producto desea comprar?";
@@ -53,17 +57,32 @@ public class LabelInformacion extends JLabel {
         this.setVisible(true);
     }
 
+    /**
+     * Actualiza los valores del producto seleccionado y su stock disponible, y luego
+     * actualiza el texto informativo que se muestra en la interfaz.
+     *
+     * @param productoSeleccionado El producto seleccionado de tipo ProductosEnum.
+     * @param stockProductoSeleccionado La cantidad de stock disponible para el producto seleccionado.
+     */
     public void actualizarValores(ProductosEnum productoSeleccionado, int stockProductoSeleccionado){
         this.productoSeleccionado = productoSeleccionado;
         this.stockProductoSeleccionado = stockProductoSeleccionado;
         this.actualizarTextoInformativo();
     }
 
+    /**
+     * Actualiza el texto informativo mostrado en la etiqueta con los detalles del producto seleccionado,
+     * incluyendo su nombre, stock y precio.
+     */
     public void actualizarTextoInformativo(){
         this.textoInformativo = "Producto seleccionado: " + productoSeleccionado.getNombre() + " ("+ stockProductoSeleccionado +"): $" + productoSeleccionado.getPrecio();
         this.setText(textoInformativo);
     }
 
+    /**
+     * Muestra un mensaje en la etiqueta indicando que los depósitos vacíos
+     * han sido repuestos.
+     */
     public void mostrarRenovacion(){
         this.setText("¡Se han repuesto depósitos vacíos!");
     }
