@@ -57,7 +57,9 @@ public class PanelPrincipal extends JPanel {
         SwingUtilities.invokeLater(() -> {
             JOptionPane.showMessageDialog(this, "¡Bienvenido a nuestro expendedor de productos!\n" +
                             "Puedes ver tus monedas disponibles dejando el mouse encima de los botones de moneda.\n" +
-                            "También puedes ver el número de serie de los productos de la misma forma.",
+                            "También puedes ver el número de serie de los productos de la misma forma.\n" +
+                            "Además, si tienes suficientes monedas, puedes intercambiarlas por monedas de coste más alto:\n" +
+                            "5 x 100 → 1 x 500, y 2 x 500 → 1 x 1000",
                     "Bienvenida", JOptionPane.PLAIN_MESSAGE);
         });
 
