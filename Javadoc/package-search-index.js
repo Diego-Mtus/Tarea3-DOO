@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.udec"},{"l":"org.udec.grafica"},{"l":"org.udec.logica"}];updateSearchResults();

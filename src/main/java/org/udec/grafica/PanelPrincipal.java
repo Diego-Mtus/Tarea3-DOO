@@ -10,6 +10,11 @@ import java.io.BufferedInputStream;
 import java.io.InputStream;
 
 
+/**
+ * Esta clase extiende JPanel y actúa como el panel principal del sistema, integrando
+ * dos subpaneles (PanelComprador y PanelExpendedor) y reproduciendo música.
+ * También define colores y una fuente personalizada para los elementos gráficos del panel.
+ */
 public class PanelPrincipal extends JPanel {
 
     private PanelComprador com;

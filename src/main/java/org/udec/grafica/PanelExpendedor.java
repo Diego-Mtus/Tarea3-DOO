@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Clase que representa el panel principal para la interacción con un expendedor de productos.
+ * Clase que representa el panel de interacción con un expendedor de productos.
  * Está diseñada para mostrar visualmente los diferentes depósitos de productos,
  * actualizar el stock en tiempo real y manejar las selecciones realizadas por el usuario.
  */
@@ -100,8 +100,7 @@ public class PanelExpendedor extends JPanel {
 
     /**
      * Actualiza la interfaz gráfica para reflejar la recarga de stock e información.
-     *
-     *
+     *<p>
      * Este método realiza dos acciones principales:
      * </p>
      * 1. Llama al método mostrarRenovacion() de labelInformativo para
